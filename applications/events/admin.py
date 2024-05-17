@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from applications.events.models import Events, Image
+
+admin.site.register(Events)
+admin.site.register(Image)
