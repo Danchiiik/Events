@@ -28,8 +28,6 @@ class EventsSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         event_date = attrs.get('date')
         today = datetime.now().date()
-        print(event_date)
-        print(today)
         if today > event_date:
             raise serializers.ValidationError('Введите дату в будущем времени')
         return attrs

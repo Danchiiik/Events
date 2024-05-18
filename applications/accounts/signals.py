@@ -16,7 +16,6 @@ def create_profile(sender, instance, created, **kwargs):
 def activate_user_account(sender, instance, created, **kwargs):
     if created:
         instance.is_active = True
-        instance.is_authenticated = True
         instance.save()
         
         email = instance.email

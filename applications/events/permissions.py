@@ -6,16 +6,14 @@ class IsEventOwner_or_ReadOnly(BasePermission):
     def has_permission(self, request, view):
         if request.method in SAFE_METHODS:
             return True
-        if request.method == 'POST':
+        if request.method in ['POST', 'DELETE', 'PUT', 'PATCH']:
             return request.user.is_authenticated
-    
+     
     def has_object_permission(self, request, view, obj):
         if request.method in SAFE_METHODS:
             return True
-        if request.method == 'POST':
-            return request.user.is_authenticated
-        if request.method == 'DELETE':
-            return request.user.is_authenticated and request.user == obj.owner
+        if request.method == "POST":
+            return request.user.is_authenticated or request.user.is_staff
         return request.user.is_authenticated and (request.user == obj.owner or request.user.is_staff)
     
     

@@ -5,6 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import mixins, GenericViewSet
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from applications.accounts.models import Profile
 from applications.accounts.permissions import IsProfileOwner
@@ -66,10 +69,21 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
     permission_classes = [IsProfileOwner]
     
 
-    
+
 def home(request):
     return render(request, 'home.html')
 
 def logout_view(request):
     logout(request)
     return redirect('/api/v1/account/')
+
+@login_required
+def generate_jwt_token(request):
+    user = request.user
+    refresh = RefreshToken.for_user(user)
+    token = {
+        'refresh': str(refresh),
+        'access': str(refresh.access_token),
+    }
+    # You can redirect to a frontend page or send the token to your frontend in another way
+    return JsonResponse(token)

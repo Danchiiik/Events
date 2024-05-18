@@ -20,7 +20,8 @@ urlpatterns = [
     path('profile/', include(router.urls)),
 
     path('', views.home),
-    path('logout/', views.logout_view)
+    path('logout/', views.logout_view),
+    path('generate-jwt-token/', views.generate_jwt_token),
        
 ]
 
