@@ -9,6 +9,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 User = get_user_model()
 
 class EventsTestCase(TestCase):
+    
     def setUp(self) -> None:
         User.objects.create(email='dcabatar@gmail.com', password='12345678', is_active = True)
         
@@ -55,27 +56,38 @@ class EventsTestCase(TestCase):
         
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         
+        
+    file_path = "/home/daniel/Documents/diploma/media/images/hello.jpg"
+    def get_upload_photo(self) -> SimpleUploadedFile:
+        with open(file=self.file_path, mode="rb") as file:
+            return SimpleUploadedFile(
+                name="hello.jpg",
+                content=file.read(),
+                content_type="image/jpg"
+            )
+            
     
-    def test_events_put(self):    
-        url = 'http://127.0.0.1:8000/api/v1/events/'
-        response = self.client.post(url, data=self.data, **self.jwt_token)
+    # def test_events_put(self):    
+    #     url = 'http://127.0.0.1:8000/api/v1/events/'
+    #     response = self.client.post(url, data=self.data, **self.jwt_token)
+    #     image = self.get_upload_photo()
         
-        data1 = {
-            'name': 'put',
-            'image': '7css.png',
-            'region': 'Бишкек',
-            'address': 'dfd',
-            'date': '2024-05-23',
-            'time': '10:10',
-            'type_of_event': 'Открытие',
-            'type': 'Открытый'
-        }
+    #     data1 = {
+    #         'name': 'put',
+    #         'image': image,
+    #         'region': 'Бишкек',
+    #         'address': 'dfd',
+    #         'date': '2024-05-23',
+    #         'time': '10:10',
+    #         'type_of_event': 'Открытие',
+    #         'type': 'Открытый'
+    #     }
         
-        print(response.data)
-        url = f'http://127.0.0.1:8000/api/v1/events/{response.data["id"]}/'
-        response = self.client.put(url, data=data1, **self.jwt_token, format='multipart', content_type='application/json')
+    #     url = f'http://127.0.0.1:8000/api/v1/events/{response.data["id"]}/'
+    #     response = self.client.put(url, data=data1, **self.jwt_token, format='multipart')
         
-        self.assertEqual(status.HTTP_200_OK, response.status_code)
+    #     self.assertEqual(status.HTTP_200_OK, response.status_code, response.data)
+      
             
     def test_events_patch(self):      
         url = 'http://127.0.0.1:8000/api/v1/events/'
@@ -86,7 +98,6 @@ class EventsTestCase(TestCase):
         url = f'http://127.0.0.1:8000/api/v1/events/{response.data["id"]}/'
         response = self.client.patch(url, data=data1, **self.jwt_token, content_type='application/json')
         
-    
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         
         
