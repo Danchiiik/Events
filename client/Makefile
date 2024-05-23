@@ -1,0 +1,2 @@
+v:
+	npm run serve

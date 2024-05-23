@@ -53,12 +53,19 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_filters',
     'drf_yasg',
+    'corsheaders',
     
     #apps
     'applications.accounts',
     'applications.feedback',
     'applications.events',
-]    
+]
+
+# CORS SETTINGS:
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+    'http://192.168.4.184:8080'
+]
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -73,6 +80,7 @@ SOCIALACCOUNT_PROVIDERS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

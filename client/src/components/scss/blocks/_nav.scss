@@ -1,0 +1,61 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+
+    .nav-menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.home-link {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.nav__list {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+
+    .nav__list-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 35px;
+        border: 2px $yellow-color solid;
+        background-color: $yellow-color;
+        transition: .3s;
+
+        .sign {
+            text-transform: uppercase;
+        }
+
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    .nav__list-item-auth {
+        padding: 10px 20px;
+        border-radius: 35px;
+        border: 2px black solid;
+        background-color: black;
+        transition: .3s;
+
+        .nickname {
+            color: white;
+
+        }
+
+        // .sign {
+        //     text-transform: uppercase;
+        // }
+
+        // &:hover {
+        //     background-color: white;
+        // }
+    }
+}

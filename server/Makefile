@@ -7,3 +7,8 @@ m:
 
 u:
 	python manage.py createsuperuser
+
+
+
+v:
+	npm run serve
