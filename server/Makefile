@@ -10,5 +10,5 @@ u:
 
 
 
-v:
-	npm run serve
+c:
+	celery -A events worker -l debug

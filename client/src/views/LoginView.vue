@@ -132,12 +132,12 @@ export default {
                         <button type="submit" class="signup-button">Login</button>
                     </div>
                 </form>
-
+<!-- 
                 <div v-if="errors.length">
                     <ul>
                         <li v-for="error in errors" :key="error">{{ error }}</li>
                     </ul>
-                </div>
+                </div> -->
 
                 <div class="register-div">
                     <span>Еще не регистрировались?</span>
@@ -153,6 +153,7 @@ export default {
 <script>
 import axios from 'axios';
 import { mapActions } from 'vuex';
+import { useToast } from 'vue-toast-notification'
 
 export default {
     name: "LoginView",
@@ -165,6 +166,7 @@ export default {
     },
     mounted() {
         document.title = "Events.kg"
+        this.$toast = useToast()  
     },
     methods: {
         ...mapActions(['login']),
@@ -173,10 +175,18 @@ export default {
 
             if (this.email === "") {
                 this.errors.push("The email is missing");
+                this.$toast.warning("The 'email' field is empty")
+            }
+
+            if (!this.email.includes("@")) {
+                this.errors.push("Please write email correctly")
+                this.$toast.warning("Please write email correctly")
             }
 
             if (this.password === "") {
                 this.errors.push("The password is missing");
+                this.$toast.warning("The 'password' fields is empty")
+
             }
 
             if (!this.errors.length) {
@@ -200,7 +210,6 @@ export default {
                             userNickname: this.email
                         });
                         
-                        // Redirect to the base page
                         this.$router.push('/');
                     } else {
                         this.errors.push("Invalid response format");

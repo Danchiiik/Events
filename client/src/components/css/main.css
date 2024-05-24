@@ -126,6 +126,25 @@ a {
   font-weight: 600;
 }
 
+.router-create {
+  margin-left: -650px;
+}
+
+.create {
+  font-size: 25px;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 35px;
+  border: 2px #000000 solid;
+  background-color: #000000;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.create:hover {
+  background-color: white;
+  color: #000000;
+}
+
 .nav__list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -277,10 +296,17 @@ a {
 }
 
 img.logo-contact {
+  margin: 5px 15px 0px 0px;
   width: 30px;
   height: 30px;
   -webkit-filter: invert(1);
           filter: invert(1);
+}
+img.logo-contact:hover {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 .register-section {
@@ -362,6 +388,15 @@ input {
 
 span {
   font-size: 25px;
+}
+
+.registered-text {
+  margin-top: 250px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 30px;
 }
 
 .login-div {
@@ -508,4 +543,101 @@ span {
 }
 .register-div .register-button:hover {
   background-color: white;
+}
+
+.home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.home .container {
+  max-width: 1600px;
+  border: 2px black solid;
+}
+
+.filter-create {
+  border: 2px black solid;
+  width: 400px;
+  height: 600px;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filters {
+  margin-top: 150px;
+}
+
+.buttons {
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.buttons .date {
+  border: 2px #F2E318 solid;
+  padding: 10px 15px;
+  background-color: #F2E318;
+  border-radius: 30px;
+  font-size: 20px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.buttons .date:hover {
+  background-color: white;
+}
+.buttons .reset {
+  border: 2px #000000 solid;
+  color: white;
+  padding: 10px 15px;
+  background-color: #000000;
+  border-radius: 30px;
+  font-size: 20px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.buttons .reset:hover {
+  background-color: white;
+  color: #000000;
+}
+
+.three-filters {
+  width: 300px;
+  margin-top: 50px;
+}
+.three-filters .regions, .three-filters .types-of-events, .three-filters .types {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.region-filter, .types_event-filter, .type-filter {
+  margin-top: 30px;
+}
+
+.regions-select, .types_event-select, .types-select {
+  margin-top: 10px;
+  font-size: 20px;
+  width: 300px;
+  padding: 10px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+}
+
+option {
+  padding: 10px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
 }

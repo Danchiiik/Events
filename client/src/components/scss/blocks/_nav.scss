@@ -15,6 +15,26 @@
     font-weight: 600;
 }
 
+.router-create {
+    margin-left: -650px;
+}
+
+.create {
+    font-size: 25px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 2px $black-color solid;
+    background-color: $black-color;
+    transition: .3s;
+
+    &:hover {
+        background-color: white;
+        color: $black-color;
+    }
+   
+}
+
 .nav__list {
     display: flex;
     gap: 20px;

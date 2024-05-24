@@ -124,6 +124,7 @@ export default {
       <div class="container">
         <div class="nav-menu">
           <router-link class="home-link" to="/"><i>Events.kg</i></router-link>
+          <router-link to="" v-if="isAuthenticated" class="router-create"><p class="create">Создать</p></router-link>
           <ul class="nav__list" v-if="showNav && !isAuthenticated">
             <li class="nav__list-item">
               <router-link to="/register">
@@ -150,6 +151,7 @@ export default {
 
     <section class="events">
       <router-view/>
+      
     </section>
 
     <div class="footer-wrapper">
@@ -172,8 +174,8 @@ export default {
               <h3>Contact Us</h3>
               <p class="contact">Email: dcabatar@gmail.com</p> 
               <p class="contact">Phone: +996 995 75 07 07</p>
-              <img src="../static_files/free-icon-social-12940260.png" alt="" class="logo-contact"><a href="" class="media"></a>
-              <a href="" class="media"><img src="" alt=""></a>
+              <a href="https://www.instagram.com/danc_iiik/" class="media"><img src="../static_files/free-icon-social-12940260.png" alt="" class="logo-contact"></a>
+              <a href=" https://t.me/danchiiiiik/" class="media"><img src="../static_files/free-icon-telegram-logo-87413.png" alt="" class="logo-contact"></a>
             </div>
           </div>
           <div class="footer-bottom">

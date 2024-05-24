@@ -178,7 +178,13 @@
 }
 
 img.logo-contact {
+  margin: 5px 15px 0px 0px;
   width: 30px;
   height: 30px;
   filter: invert(1);
+
+  &:hover {
+    transition: 0.2s;
+    transform: scale(1.2);
+  }
 }

@@ -1,0 +1,96 @@
+.home {
+    display: flex;
+    justify-content: center;
+    
+    .container {
+        max-width: 1600px;
+        border: 2px black solid;
+}
+
+}
+
+.filter-create {
+    border: 2px black solid;
+    width: 400px;
+    height: 600px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters {  
+    margin-top: 150px;
+    // width: 400px;
+    // display: flex;
+    // justify-content: center;
+    // flex-direction: column;
+}
+
+.buttons {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+
+
+    .date {
+        border: 2px $yellow-color solid;
+        padding: 10px 15px;
+        background-color: $yellow-color;
+        border-radius: 30px;
+        font-size: 20px;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: white;
+
+        }    
+    }
+
+
+    .reset {
+        border: 2px $black-color solid;
+        color: white;
+        padding: 10px 15px;
+        background-color: $black-color;
+        border-radius: 30px;
+        font-size: 20px;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: white;
+            color: $black-color;
+
+        }     
+    }
+}
+
+.three-filters {
+    width: 300px;
+    margin-top: 50px;
+
+    .regions, .types-of-events, .types{
+        font-size: 25px;
+        font-weight: bold;
+    }
+}
+
+.region-filter, .types_event-filter, .type-filter {
+    margin-top: 30px;
+}
+
+.regions-select, .types_event-select, .types-select {
+    margin-top: 10px;
+    font-size: 20px;
+    width: 300px;
+    padding: 10px;
+    border: 1px rgb(138, 138, 138) solid;
+    border-radius: 15px;
+
+}
+
+option {
+    padding: 10px;
+    border: 1px rgb(138, 138, 138) solid;
+    border-radius: 15px;
+}
