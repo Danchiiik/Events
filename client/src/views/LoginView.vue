@@ -132,19 +132,22 @@ export default {
                         <button type="submit" class="signup-button">Login</button>
                     </div>
                 </form>
-<!-- 
-                <div v-if="errors.length">
-                    <ul>
-                        <li v-for="error in errors" :key="error">{{ error }}</li>
-                    </ul>
-                </div> -->
 
-                <div class="register-div">
-                    <span>Еще не регистрировались?</span>
-                    <router-link to="/register">
-                        <button class="register-button">Sign up</button>
-                    </router-link>
+                <div class="add-form">
+                    <div class="register-div">
+                        <span>Еще не регистрировались?</span>
+                        <router-link to="/register">
+                            <button class="register-button">Sign up</button>
+                        </router-link>
+                    </div>
+                        
+                    <div class="forgot-password-div">
+                        <router-link to="/forgot_password">
+                            <span class="forgot-password">Забыли пароль?</span>
+                        </router-link>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

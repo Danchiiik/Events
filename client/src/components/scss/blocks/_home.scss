@@ -1,30 +1,31 @@
 .home {
     display: flex;
     justify-content: center;
+
     
     .container {
         max-width: 1600px;
-        border: 2px black solid;
+        // border: 2px black solid;
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 100px;
+    }
+    
 }
 
+.filter-main {
+    display: flex;
+    align-items: center;
 }
 
 .filter-create {
-    border: 2px black solid;
     width: 400px;
     height: 600px;
     background-color: white;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.filters {  
-    margin-top: 150px;
-    // width: 400px;
-    // display: flex;
     // justify-content: center;
-    // flex-direction: column;
+    align-items: center;
+
 }
 
 .buttons {
@@ -89,8 +90,83 @@
 
 }
 
+
 option {
     padding: 10px;
     border: 1px rgb(138, 138, 138) solid;
     border-radius: 15px;
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+.events-main {
+    // border: 2px black solid;
+    width: 1200px;
+    min-height: 1100px;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+}
+
+.event-cards {
+    max-width: 1200px;
+    min-height: 1050px;
+    display: flex;
+    column-gap: 75px;
+    flex-wrap: wrap;
+
+    .box {
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        width: 350px;
+        height: 500px;
+        transition: all 0.3s;
+
+
+        &:hover {
+            color: grey;
+            transform: scale(1.05);
+        }
+    }
+}
+
+.image-event {
+    width: 350px;
+    height: 200px;
+    background-size: contain;
+    border-radius: 15px;
+    margin-bottom: 5px;
+}
+
+.name-event {
+    margin-left: 10px;
+    font-size: 25px;
+    padding-bottom: 15px;
+}
+
+.owner, .type_of_event {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 15px;
+
+}
+
+.owner-event, .types-event-event {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.info-event {
+    flex-direction: column;
+    display: flex;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-style: italic;
+    // border: 3px green solid;
+
+    .region-event, .address-event, .date-event, .time-event, .type-event, .price-event {
+        font-size: 15px;
+    }
+}
+
+

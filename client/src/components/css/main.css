@@ -324,9 +324,10 @@ img.logo-contact:hover {
 .register-section .container {
   border-radius: 50px;
   width: 700px;
-  height: 700px;
+  height: 800px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
           box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  margin-bottom: 300px;
 }
 
 .register-header {
@@ -446,9 +447,31 @@ span {
 .login-section .container {
   border-radius: 50px;
   width: 700px;
-  height: 700px;
+  height: 800px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
           box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  margin-bottom: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-form {
+  width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 30px;
 }
 
 .login-header {
@@ -512,20 +535,34 @@ span {
   font-size: 25px;
 }
 
-.register-div {
-  position: absolute;
-  left: 874px;
-  margin-top: 80px;
-  width: 300px;
+.add-form {
+  row-gap: 20px;
+  margin-top: 100px;
+  width: 700px;
+  height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.register-div {
+  width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .register-div span {
   font-size: 15px;
@@ -545,6 +582,16 @@ span {
   background-color: white;
 }
 
+.forgot-password-div {
+  width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .home {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -555,27 +602,33 @@ span {
 }
 .home .container {
   max-width: 1600px;
-  border: 2px black solid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 100px;
+}
+
+.filter-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .filter-create {
-  border: 2px black solid;
   width: 400px;
   height: 600px;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.filters {
-  margin-top: 150px;
 }
 
 .buttons {
@@ -640,4 +693,83 @@ option {
   padding: 10px;
   border: 1px rgb(138, 138, 138) solid;
   border-radius: 15px;
+}
+
+.events-main {
+  width: 1200px;
+  min-height: 1100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.event-cards {
+  max-width: 1200px;
+  min-height: 1050px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 75px;
+     -moz-column-gap: 75px;
+          column-gap: 75px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.event-cards .box {
+  border-radius: 15px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  width: 350px;
+  height: 500px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.event-cards .box:hover {
+  color: grey;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.image-event {
+  width: 350px;
+  height: 200px;
+  background-size: contain;
+  border-radius: 15px;
+  margin-bottom: 5px;
+}
+
+.name-event {
+  margin-left: 10px;
+  font-size: 25px;
+  padding-bottom: 15px;
+}
+
+.owner, .type_of_event {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.owner-event, .types-event-event {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.info-event {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 10px;
+  font-style: italic;
+}
+.info-event .region-event, .info-event .address-event, .info-event .date-event, .info-event .time-event, .info-event .type-event, .info-event .price-event {
+  font-size: 15px;
 }
