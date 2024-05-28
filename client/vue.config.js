@@ -5,7 +5,7 @@ module.exports = defineConfig({
   configureWebpack: {
     plugins: [
       new webpack.DefinePlugin({
-        'VUE_PROD_HYDRATION_MISMATCH_DETAILS': JSON.stringify(false)
+        '__VUE_PROD_HYDRATION_MISMATCH_DETAILS__': JSON.stringify(false)
       })
     ]
   },

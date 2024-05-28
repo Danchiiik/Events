@@ -64,7 +64,9 @@
           @click="redirectToDetail(event.id)" 
           >
           <img v-bind:src="event.image" alt="" class="image-event">
-          <span class="name-event">{{ event.name }}</span>
+          <div class="name-event-div">
+            <span class="name-event">{{formatName(event.name)}}</span>
+          </div>
           <p class="owner">Организатор:</p><span class="owner-event"> {{ event.owner }}</span>
           <p class="type_of_event">Вид:</p><span class="types-event-event">{{ event.type_of_event }}</span>
           <div class="info-event">
@@ -106,88 +108,53 @@ export default {
         console.error("An error occurred: ", error);
       }
     },
+    formatName(name) {
+      try {
+        if (name.length > 25) {
+          return `${name.substring(0, 25)}...`;
+        }
+        return name;
+      } catch (error) {
+        console.error("An error occurred: ", error);
+        return name; 
+      }
+    },
+
     formatDate(dateString) {
-      const [year, month, day] = dateString.split('-');
-      return `${day}/${month}/${year}`;
+      try {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+      } catch (error) {
+        console.error("An error occurred: ", error); 
+      }
     },
     formatPrice(priceString) {
-      if (priceString === null) {
-        return "Бесплатно";
-      } else {
-        return `${parseInt(priceString, 10)} сом`;
+      try {
+
+        if (priceString === null) {
+          return "Бесплатно";
+        } else {
+          return `${parseInt(priceString, 10)} сом`;
+        }
+      } catch {
+        console.error("An error occurred: ", error); 
       }
     },
     redirectToDetail(eventId) {
-      this.$router.push(`/events/${eventId}`);
+      try {
+        this.$router.push(`/events/${eventId}`);
+      } catch {
+        console.error("An error occurred: ", error); 
+      }
     }
   }
 }
-
 </script>
+
 
 
 <style>
 @import '../components/css/main.css';
 </style>
 
-
-
-<!-- <template>
-  <div>
-    <h1>Events</h1>
-    <ul>
-      <li v-for="event in Events" :key="event.id">
-        <h2>{{ event.name }}</h2>
-        <p>{{ formatDate(event.date) }}</p>
-        <button @click="redirectToDetail(event.id)">View Details</button>
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script>
-import axios from 'axios';
-
-export default {
-  name: 'HomeView',
-  data() {
-    return {
-      Events: [],
-    };
-  },
-  mounted() {
-    this.getEvent();
-    document.title = "Events.kg";
-  },
-  methods: {
-    getEvent() {
-      axios
-        .get("api/v1/events/")
-        .then(response => {
-          this.Events = response.data.results.map(event => {
-            return {
-              ...event,
-              formattedDate: this.formatDate(event.date)
-            };
-          });
-          console.log("Events response: ", response.data);
-        })
-        .catch(errors => {
-          console.log("Errors: ", errors);
-        });
-    },
-    formatDate(dateString) {
-      const [year, month, day] = dateString.split('-');
-      return `${day}/${month}/${year}`;
-    },
-    redirectToDetail(eventId) {
-      this.$router.push(`/events/${eventId}`);
-    }
-  }
-};
-</script>
-
-<style>
-@import '../components/css/main.css';
-</style> -->
 
