@@ -2,12 +2,11 @@
     <section class="register-section">
         <div class="container">
             <div class="register-form" v-if="!IsRegistered">
-                    <div class="preview-text">
-                        <h1 class="register-header">Sign up</h1>
-                        <!-- <p class="register-description">Register to our paltform</p>    -->
-                    </div>
+                <div class="preview-text">
+                    <h1 class="register-header">Sign up</h1>
+                </div>
         
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitForm" class="main-form">
                     <div class="form">
                         <ul class="register-fields">
                             <span>Электронная почта</span>
@@ -17,23 +16,30 @@
                             <span>Подтвердите пароль</span>
                             <li class="li-button"><input type="password" v-model="password2"></li >
                         </ul>
-                        
-                        <button type="submit" class="signup-button">Sign up</button>
+                        <div class="register-buttons">
+                            <button type="submit" class="signup-button">Sign up</button>
+                            <router-link to="/google">
+                                <button class="google-button">Google</button>
+                            </router-link>
+                        </div>
+                    </div>    
+                    
+                    <div class="logining-div">
+                        <span class="logining-text">Уже регистрировались?</span>
+                        <router-link to="/login">
+                            <button class="logining-button">Login</button>
+                        </router-link>
                     </div>
-                </form>
-
-                <div class="login-div">
-                    <span>У вас уже есть аккаунт?</span>
-                    <router-link to="/login">
-                        <button class="login-button">Login</button>
-                    </router-link>      
-                </div>
+                </form>     
             </div>
 
+
             <div class="register-form" v-else>
-                <p class="registered-text">
-                    Вы успешно зарегестрировались! Пожалуйста проверьте свою почту для дальнейших действий
-                </p> 
+                <div class="registered-text-div">
+                    <p class="registered-text">
+                        Вы успешно зарегестрировались! Пожалуйста проверьте свою почту для дальнейших действий
+                    </p> 
+                </div>
             </div>
         </div>
     </section>
@@ -112,6 +118,7 @@ export default {
                     if (errors.response) {
                         for (const property in errors.response.data) {
                             this.errors.push(`${property}: ${errors.response.data[property]}`)
+                            this.$toast.warning("Пользователь с данным email уже существует")
                         }
 
                         console.log(JSON.stringify(errors.response.data))

@@ -6,10 +6,10 @@
               <img v-bind:src="event.image" class="main-img">
               <div class="like-fav">
                 <div class="like-div">
-                  <div class="like"><img src="../../static_files/free-icon-heart-8181213.png" class="like-sign"></div>
-                  <div class="like-count">
-                    <span>{{ event.likes }}</span>
-                  </div>
+                  <div class="like" @click="likeHandler" ><img src="../../static_files/free-icon-heart-8181213.png" class="like-sign"></div>
+                    <div class="like-count">
+                      <span ref="MyLike">{{ event.likes }}</span>
+                    </div>
                 </div>
 
                 <div class="favourite"><img src="../../static_files/free-icon-bookmark-2710704.png" class="fav-sign"></div>
@@ -18,7 +18,7 @@
             <div class="infoo-event">
               <div class="info-event-div">
                 <span class="main-event-name">{{ event.name }}</span>
-                <p class="main-event-owner-p">Организатор:</p><span class="main-event-owner"> {{ event.owner }}</span>
+                <p class="main-event-owner-p">Организатор:</p><span class="main-event-owner"> {{ ownerUsernames[event.owner] }}</span>
                 <p class="main-event-types-p">Вид:</p><span class="main-event-types">{{ event.type_of_event }}</span>
                 <p class="main-event-region-p">Регион:</p><span class="main-event-region">{{ event.region }}</span>
                 <p class="main-event-address-p">Адрес:</p><span class="main-event-address">{{ event.address }}</span>
@@ -39,7 +39,7 @@
 
             <div class="comment-div">
               <div class="comment-avatar">
-                <div class="avatar-img"></div>
+                <div class="avatar-img"> <img v-bind:src="myProfile.avatar" class="avatar-img"> </div>
               </div>
               <div class="write-comment">
                 <input type="text">
@@ -52,9 +52,12 @@
             v-bind:key="comment.id"
             >
               <div class="someone-comment-avatar">
-                <div class="someone-avatar-img"></div>
+                <div class="someone-avatar-img"><img v-bind:src="profile.avatar" class="someone-avatar-img-main"></div>
               </div>
-              <div class="someone-comment"><span>{{ comment.comment }}</span></div>
+              <div class="someone-comment-group">
+                <div class="someone-comment-owner"><span>{{ profile.username }}</span></div>
+                <div class="someone-comment"><span>{{ comment.comment }}</span></div>
+              </div>
             </div>
             
           </div>
@@ -70,17 +73,28 @@ export default {
   name: 'EventView',
   data() {
     return {
-      event: {},
-      Comments: {},
+      event: {
+        userLiked: false,
+        likes: 0,
+      },
+      Comments: [],
       nameEvent: "",
+      profile: "",
+      ownerUsernames: {},
+      currentUserId: localStorage.getItem('currentUserId'),
+      myProfile: [],
 
     }
   },
   mounted() {
     this.getEvent();
     this.getComment();
+    this.fetchEventData();
+    this.getMyProfile();
     document.title = 'Loading...';
   },
+
+
   methods: {
     async getEvent() {
       const eventId = this.$route.params.id;
@@ -90,9 +104,28 @@ export default {
         this.nameEvent = response.data.name;
         document.title = this.nameEvent;
         console.log("Detail data: ", response.data);
+        this.getOwnerUsername(this.event.owner);
       } catch (error) {
         console.error("An error occurred: ", error);
       }
+    },
+
+    async getOwnerUsername(ownerId) {
+      if (!this.ownerUsernames[ownerId]) {
+        try {
+          const response = await axios.get(`/api/v1/account/profile/`);
+          const profile = response.data.find(profile => profile.user === ownerId);
+          if (profile) {
+            this.ownerUsernames[ownerId] = profile.username;
+          } else {
+            this.ownerUsernames[ownerId] = 'Unknown';
+          }
+        } catch (error) {
+          console.error("An error occurred: ", error);
+          this.ownerUsernames[ownerId] = 'Error';
+        }
+      }
+      return this.ownerUsernames[ownerId] || 'Loading...';
     },
 
     async getComment() {
@@ -104,9 +137,37 @@ export default {
       } catch (error) {
         console.error("An error occurred: ", error);
       }
+
+        if (this.Comments.length > 0) {
+          const ownerEmail = this.Comments[0].owner;
+          this.getProfileByEmail(ownerEmail); 
+        }
     },
 
+    async getMyProfile() {
+      try {
+        const response = await axios.get(`api/v1/account/profile/${this.currentUserId}/`)
+        this.myProfile = response.data
+      } catch {}
+    },
+    
+    async getProfileByEmail(ownerEmail) {
+      try {
+        const response = await axios.get(`/api/v1/account/profile?email=${ownerEmail}`); 
+        const profiles = response.data;
+        console.log("Profile data: ", response.data);
 
+        const profile = profiles.find(profile => profile.user === ownerEmail);
+        if (profile) {
+          this.profile = profile;
+          console.log("Matched Profile: ", profile);
+        } else {
+          console.error("Profile not found for email: ", ownerEmail);
+        }
+      } catch (error) {
+        console.error("An error occurred: ", error);
+      }
+    },
 
     formatDate(dateString) {
       try {
@@ -116,6 +177,8 @@ export default {
         console.error("An error occurred: ", error); 
       }
     },
+
+
     formatPrice(priceString) {
       try {
 
@@ -128,6 +191,8 @@ export default {
         console.error("An error occurred: ", error); 
       }
     },
+
+
     redirectToDetail(eventId) {
       try {
         window.location.href = eventId;
@@ -135,15 +200,57 @@ export default {
         console.error("An error occurred: ", error); 
       }
     },
-    // previous() {
-    //   try {
-    //     this.$router.go(-1);
-    //   } catch {
-    //     console.error("An error occurred: ", error); 
-    //   }
-    // }
-  }
+
+    async fetchEventData() {
+      const eventId = this.$route.params.id;
+      try {
+        const response = await axios.get(`/api/v1/events/${eventId}`);
+        this.event = response.data;
+      } catch (error) {
+        console.error("Failed to fetch event data:", error);
+      }
+    },
+
+    async likeHandler() {
+      const eventId = this.$route.params.id;
+      const token = localStorage.getItem("accessToken"); 
+      if (!token) {
+        console.error("No token found in localStorage.");
+      }
+
+      try {
+        const response = await axios.post(`/api/v1/events/${eventId}/like/`, {}, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        if (response.data) {
+          console.log(response.data)
+          if (response.data.message && response.data.message.includes('поставили лайк')) {
+            this.event.likes += 1;
+            this.event.userLiked = true;
+
+          } else if (response.data.message && response.data.message.includes('убрали лайк')) {
+            this.event.likes -= 1;
+            this.event.userLiked = false;
+            this.renderKey++;
+          }
+        } else {
+          console.error("No data in the response.");
+        }
+      } catch (error) {
+        console.log("token: ", token);
+        console.error("An error occurred: ", error);
+      }
+    },
+
+
+
+  },
+
 }
+
 </script>
 
 

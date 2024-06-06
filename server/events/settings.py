@@ -67,7 +67,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://192.168.4.184:8080'
 ]
 
-SOCIALACCOUNT_PROVIDERS = {
+SOCIALACCOUNT_PROVIDER = {
     'google': {
         'SCOPE': [
             'profile',
@@ -163,7 +163,6 @@ MEDIA_ROOT = BASE_DIR /'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 REST_FRAMEWORK = {
@@ -233,4 +232,9 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/api/v1/account/'
 LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
+AUTH_USER_MODEL = 'accounts.CustomUser'
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+SOCIALACCOUNT_ADAPTER = 'applications.accounts.adapters.CustomSocialAccountAdapter'

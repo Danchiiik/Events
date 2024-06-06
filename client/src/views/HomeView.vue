@@ -5,47 +5,48 @@
 
         <div class="filter-create">
           <div class="filters">
+
             <div class="buttons">
               <router-link to="/">
-                <button class="all"><p class="reset">Сбросить</p></button>
+                <button class="all" @click="resetFilters"><p class="reset">Сбросить</p></button>
               </router-link>
-              <button class="date-ordering"><p class="date">Дата</p></button>
+              <button class="date-ordering" @click="toggleDateOrdering"><p class="date">По дате</p></button>
             </div>
-            <div class ="three-filters">
-              
+
+            <div class ="three-filters">  
               <div class="region-filter">
                 <label for="regions" class="regions">Регион:</label> <br>
-                <select name="region" id="region" class="regions-select">
+                <select name="region" id="region" class="regions-select" v-model="filters.region" @change="applyFilters">
                   <option value="default">-</option>
-                  <option value="Bishkek">Бишкек</option>
-                <option value="Chui">Чуй</option>
-                <option value="Talas">Талас</option>
-                <option value="Issyk-Kul">Иссык-Куль</option>
-                <option value="Jalal-Abad">Жалал-Абад</option>
-                <option value="Naryn">Нарын</option>
-                <option value="Osh">Ош</option>
-                <option value="Batken">Баткен</option>
+                  <option value="Бишкек">Бишкек</option>
+                <option value="Чуй">Чуй</option>
+                <option value="Талас">Талас</option>
+                <option value="Иссык-Куль">Иссык-Куль</option>
+                <option value="Жалал-Абад">Жалал-Абад</option>
+                <option value="Нарын">Нарын</option>
+                <option value="Ош">Ош</option>
+                <option value="Баткен">Баткен</option>
               </select> <br>
             </div>
             
             <div class="types_event-filter">
               <label for="types_of_events" class="types-of-events">Вид мероприятия:</label> <br>
-              <select name="types_of_event" id="types_of_event" class="types_event-select">
+              <select name="types_of_event" id="types_of_event" class="types_event-select" v-model="filters.typeOfEvent" @change="applyFilters">
                 <option value="default">-</option>
-                <option value="1">Открытие</option>
-                <option value="2">Выставка</option>
-                <option value="3">Ярмарка</option>
-                <option value="4">Презентация</option>
-                <option value="5">Праздник</option>
-                <option value="6">Пресс-мероприятие</option>
-                <option value="7">Тренинг/семинар</option>
-                <option value="8">Фестиваль/концерт</option>
+                <option value="Открытие">Открытие</option>
+                <option value="Выставка">Выставка</option>
+                <option value="Ярмарка">Ярмарка</option>
+                <option value="Презентация">Презентация</option>
+                <option value="Праздник">Праздник</option>
+                <option value="Пресс-мероприятие">Пресс-мероприятие</option>
+                <option value="Тренинг/семинар">Тренинг/семинар</option>
+                <option value="Фестиваль/концерт  ">Фестиваль/концерт</option>
               </select> <br>
             </div>
 
             <div class="type-filter">
               <label for="types" class="types">Тип мероприятия:</label> <br>
-              <select name="types" id="types" class="types-select">
+              <select name="types" id="types" class="types-select" v-model="filters.type" @change="applyFilters">
                 <option value="default">-</option>
                 <option value="1">Открытый</option>
                 <option value="2">Закрытый</option>
@@ -59,7 +60,7 @@
       <div class="events-main">
         <div class="event-cards">
           <div class="box"
-          v-for="event in Events"
+          v-for="event in filteredEvents"
           v-bind.key = "event.id"
           @click="redirectToDetail(event.id)" 
           >
@@ -67,7 +68,7 @@
           <div class="name-event-div">
             <span class="name-event">{{formatName(event.name)}}</span>
           </div>
-          <p class="owner">Организатор:</p><span class="owner-event"> {{ event.owner }}</span>
+          <p class="owner">Организатор:</p><span class="owner-event"> {{ getUsername(event.owner) }}</span>
           <p class="type_of_event">Вид:</p><span class="types-event-event">{{ event.type_of_event }}</span>
           <div class="info-event">
             <span class="region-event">{{ event.region }}</span>
@@ -92,6 +93,14 @@ export default {
   data() {
     return {
       Events: [],
+      usernames: {},
+      filteredEvents: [],
+      filters: {
+        region: 'default',
+        typeOfEvent: 'default',
+        type: 'default',
+        dateOrdering: null,
+      }
     }
   },
   mounted() {
@@ -103,21 +112,85 @@ export default {
       try {
         const response = await axios.get("/api/v1/events/");
         this.Events = response.data.results;
+        this.filteredEvents = this.Events;
         console.log("Events response: ", response.data);
+
+        this.Events.forEach(event => {
+          this.ownerUsername(event.owner);
+        });
+
       } catch (error) {
         console.error("An error occurred: ", error);
       }
     },
+
+    applyFilters() {
+    this.filteredEvents = this.Events.filter(event => {
+      return (this.filters.region === 'default' || event.region === this.filters.region) &&
+             (this.filters.typeOfEvent === 'default' || event.type_of_event === this.filters.typeOfEvent) &&
+             (this.filters.type === 'default' || event.type === this.filters.type);
+    });
+
+    console.log("Filtered events:", JSON.stringify(this.filteredEvents, null, 2));
+    if (this.filters.dateOrdering) {
+    if (this.filters.dateOrdering === 'asc') {
+      this.filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date)); // Added
+    } else if (this.filters.dateOrdering === 'desc') {
+      this.filteredEvents.sort((a, b) => new Date(b.date) - new Date(a.date)); // Added
+    }
+  }
+
+
+    },
+
+    resetFilters() {
+      this.filters.region = 'default';
+      this.filters.typeOfEvent = 'default';
+      this.filters.type = 'default';
+      this.filters.dateOrdering = null;
+      this.applyFilters();
+    },
+
+    toggleDateOrdering() {
+      if (this.filters.dateOrdering === 'asc') { // Changed
+        this.filters.dateOrdering = 'desc'; // Changed
+      } else {
+        this.filters.dateOrdering = 'asc'; // Changed
+      }
+      this.applyFilters();
+      },
+
+
     formatName(name) {
       try {
-        if (name.length > 25) {
-          return `${name.substring(0, 25)}...`;
+        if (name.length > 22) {
+          return `${name.substring(0, 22)}...`;
         }
         return name;
       } catch (error) {
         console.error("An error occurred: ", error);
         return name; 
       }
+    },
+
+    async ownerUsername(eventOwner) {
+      try {
+        const response = await axios.get(`api/v1/account/profile/`);
+        const filteredResponse = response.data.filter(profile => profile.user === eventOwner);
+        if (filteredResponse.length > 0) {
+          this.usernames[eventOwner] = filteredResponse[0].username;
+        } else {
+          console.log("No user found for the given event owner");
+          this.usernames[eventOwner] = 'Unknown';
+        }
+      } catch (error) {
+        console.log('An error occurred: ', error);
+        this.usernames[eventOwner] = 'Error';
+      }
+    },
+
+    getUsername(eventOwner) {
+      return this.usernames[eventOwner] || 'Loading...';
     },
 
     formatDate(dateString) {

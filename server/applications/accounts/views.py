@@ -85,5 +85,4 @@ def generate_jwt_token(request):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }
-    # You can redirect to a frontend page or send the token to your frontend in another way
     return JsonResponse(token)

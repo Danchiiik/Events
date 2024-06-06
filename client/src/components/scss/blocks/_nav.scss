@@ -10,23 +10,28 @@
     }
 }
 
+.home-link-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+}
+
 .home-link {
     font-size: 50px;
     font-weight: 600;
 }
 
-.router-create {
-    margin-left: -650px;
-}
 
 .create {
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     padding: 10px 20px;
     border-radius: 35px;
     border: 2px $black-color solid;
     background-color: $black-color;
     transition: .3s;
+
 
     &:hover {
         background-color: white;
@@ -67,15 +72,15 @@
 
         .nickname {
             color: white;
-
         }
 
-        // .sign {
-        //     text-transform: uppercase;
-        // }
+        &:hover {
+            background-color: white;
+            cursor: pointer;
 
-        // &:hover {
-        //     background-color: white;
-        // }
+            .nickname {
+                color: $black-color;
+            }
+        }
     }
 }

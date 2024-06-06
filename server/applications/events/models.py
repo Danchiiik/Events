@@ -35,8 +35,6 @@ TYPE = (
 class Events(models.Model):
     name = models.CharField(max_length=100)
     image = models.FileField(upload_to='images/')
-    # models
-    # video = models.ManyToManyField(Video)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     description = models.TextField(null=True, blank=True)
     region = models.CharField(max_length=50, choices=REGION)

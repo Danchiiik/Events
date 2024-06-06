@@ -6,20 +6,22 @@
     .container {
         max-width: 1600px;
         min-height: 800px;
-        border: 2px black solid;
+        // border: 2px black solid;
         display: flex;
         // justify-content: space-around;
         margin-bottom: 100px;
         flex-direction: column;
         // margin-bottom: 200px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;   
     }
 }
 
 .content {
     max-width: 1600px;
     min-height: 620px;
-    border: 2px green solid;
+    // border: 2px green solid;
     display: flex;
+    
     // flex-direction: column;
     // flex-wrap: wrap;
     // align-items: center;
@@ -28,7 +30,7 @@
     .img-event {
         min-width: 1000px;
         height: 600px;
-        border: 2px red solid;
+        // border: 2px red solid;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -45,14 +47,14 @@
             margin-top: 10px;
             height: 50px;
             width: 800px;
-            border: 2px yellow solid;
+            // border: 2px yellow solid;
             display: flex;
             justify-content: space-between;
 
             .like-div {
                 width: 120px;
                 height: 50px;
-                border: 2px red solid;
+                // border: 2px red solid;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -65,6 +67,12 @@
                     align-items: center;
                     border: 1px black solid;
                     border-radius: 30px;
+                    transition: 0.3s;
+
+                    &:hover {
+                        transform: scale(1.05);
+                        cursor: pointer;
+                    }
 
                     .like-sign {
                         width: 30px;
@@ -111,6 +119,7 @@
 
         .info-event-div {
             margin-top: 40px;
+            margin-right: 100px;
         }
         
         .main-event-name {
@@ -133,10 +142,11 @@
 
 
 .descr-div {
-    width: 1600px;
+    width: 1500px;
     min-height: 400px;
     max-height: 400px;
     margin-bottom: 100px;
+    margin-left: 100px;
 
     .descr-p {
         margin-bottom: 10px;
@@ -151,9 +161,11 @@
 
 
 .comments {
-    width: 1600px;
+    width: 1500px;
     min-height: 300px;
-    border: 2px red solid;
+    // border: 2px red solid;
+    margin-bottom: 100px;
+    margin-left: 100px;
 
 
     .comments-header-div {
@@ -176,7 +188,7 @@
         .avatar-img {
             height: 80px;
             width: 80px;
-            border: 1px black solid;
+            // border: 1px rgb(43, 43, 43) solid;
             border-radius: 45px;
 
         }
@@ -196,6 +208,9 @@
         input {
             min-height: 50px;
             width: 800px;
+            border: 1px rgb(177, 177, 177) solid;
+            border-radius: 15px;
+            padding: 5px 10px;
         }
     }
 
@@ -214,6 +229,7 @@
 
         &:hover{
             background-color: white;
+            cursor: pointer;
         }
 
         span {
@@ -237,29 +253,56 @@
         justify-content: center;
         align-items: center;
 
+
         .someone-avatar-img {
             height: 70px;
             width: 70px;
-            border: 1px black solid;
+            border: 1px rgb(174, 174, 174) solid;
             border-radius: 45px;
+            box-sizing: content-box;
+
+            .someone-avatar-img-main {
+                height: 70px;
+                width: 70px;
+                border-radius: 45px;
+            }
 
         }
     }
 
+    .someone-comment-group {
+        max-width: 800px;
+        min-height: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    
+    .someone-comment-owner {
+        max-height: 20px;
+        min-width: 800px;
+        margin-bottom: 5px;
+
+        span {
+            font-weight: 600;
+            font-size: 15px;
+        }
+    }
 
     .someone-comment {
-        min-height: 50px;
-        width: 800px;
-        border: 2px black solid;
+        min-height: 30px;
+        max-height: 100px;
+        min-width: 800px;
+        // border: 2px black solid;
         display: flex;
         align-items: center;
 
         span {
-            margin-left: 5px;
             font-size: 20px;
         }
 
     }
+
 }
 
 

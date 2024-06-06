@@ -9,13 +9,6 @@ class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = '__all__'
-        
-        
-# class VideoSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Video
-#         fields = '__all__'
-
 
 class EventsSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.email')

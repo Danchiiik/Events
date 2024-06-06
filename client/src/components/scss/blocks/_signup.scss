@@ -1,107 +1,265 @@
+// .home {
+//     display: flex;
+//     justify-content: center;
+// }
+
+
+// .register-section {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     margin-top: 100px;
+
+//     .container {
+//         border-radius: 50px;
+//         width: 700px;
+//         height: 800px;
+//         box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+//         margin-bottom: 300px;
+//         display: flex;
+//         justify-content: center;
+
+//     }
+// }
+
+
+
+// .login-div {
+//     position: absolute;
+//     width: 300px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+
+//     span {
+//         font-size: 15px;
+//     }
+
+//     .login-button {
+//         font-size: 15px;
+//         padding: 10px 20px;
+//         border-radius: 35px;
+//         border: 2px $yellow-color solid;
+//         background-color: $yellow-color;
+//         transition: .3s;
+
+//         &:hover {
+//             background-color: white;
+//         }
+//     }
+// }
+
+
+// .register-header {
+//     margin-top: 20px;
+//     font-size: 80px;
+//     font-weight: bold;
+//     text-align: center;
+// }
+
+// .register-fields {
+//     margin-top: 70px;
+//     width: 300px;
+//     height: 300px;
+//     display: flex;
+//     justify-content: center;
+//     flex-wrap: wrap;
+// }
+
+// form {
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .li-button {
+//     // border: 1px rgb(0, 0, 0) solid;  
+//     height: 30px;
+//     width: 300px;
+//     margin-bottom: 10px;
+// }
+
+// input {
+//     border-radius: 5px;
+//     padding: 5px;
+//     border: 1px rgb(120, 120, 120) solid;
+//     height: 30px;
+//     width: 300px;
+
+// }
+
+// .signup-button {
+//     font-size: 20px;
+//     padding: 10px 20px;
+//     border-radius: 35px;
+//     border: 2px $yellow-color solid;
+//     background-color: $yellow-color;
+//     transition: .3s;
+
+//     &:hover {
+//         background-color: white;
+//     }
+// }
+
+// span {
+//     font-size: 25px;
+// }
+
+// .registered-text {
+//     margin-top: 250px;
+//     align-items: center;
+//     text-align: center;
+//     font-size: 30px;
+
+// }
+
+
+
 .register-section {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
     margin-top: 100px;
 
     .container {
-        border-radius: 50px;
+        width: 1600px;
+        display: flex;
+        justify-content: center;
+
+    }
+}
+
+.register-form {
+    border-radius: 50px;
+    width: 700px;
+    height: 800px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    margin-bottom: 300px;
+    display: flex;
+    flex-direction: column;
+
+    .registered-text-div {
         width: 700px;
         height: 800px;
-        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-        margin-bottom: 300px;
-    }
-}
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
+        .registered-text {
+            font-size: 30px;
+            text-align: center;
+        }
 
-
-
-.register-header {
-    margin-top: 20px;
-    font-size: 80px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.register-fields {
-    margin-top: 70px;
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-form {
-    display: flex;
-    justify-content: center;
-}
-
-.li-button {
-    // border: 1px rgb(0, 0, 0) solid;  
-    height: 30px;
-    width: 300px;
-    margin-bottom: 10px;
-}
-
-input {
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px rgb(120, 120, 120) solid;
-    height: 30px;
-    width: 300px;
-
-}
-
-.signup-button {
-    font-size: 20px;
-    padding: 10px 20px;
-    border-radius: 35px;
-    border: 2px $yellow-color solid;
-    background-color: $yellow-color;
-    transition: .3s;
-
-    &:hover {
-        background-color: white;
-    }
-}
-
-span {
-    font-size: 25px;
-}
-
-.registered-text {
-    margin-top: 250px;
-    align-items: center;
-    text-align: center;
-    font-size: 30px;
-
-}
-
-.login-div {
-    position: absolute;
-    left: 874px;
-    margin-top: 80px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    span {
-        font-size: 15px;
     }
 
-    .login-button {
-        margin-left: 10px;
-        font-size: 15px;
-        padding: 10px 20px;
-        border-radius: 35px;
-        border: 2px $yellow-color solid;
-        background-color: $yellow-color;
-        transition: .3s;
+    .preview-text {
 
-        &:hover {
-            background-color: white;
+        .register-header {
+            margin-top: 50px;
+            font-size: 80px;
+            font-weight: bold;
+            text-align: center;
         }
     }
-}
+
+    .main-form {
+        margin-top: 50px;
+        width: 700px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        .register-fields {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .li-button {
+                height: 30px;
+                width: 300px;
+                margin-bottom: 10px;
+            }
+
+            input {
+                border-radius: 5px;
+                padding: 5px;
+                border: 1px rgb(120, 120, 120) solid;
+                height: 30px;
+                width: 300px;
+            }
+
+            span {
+                font-size: 25px;
+            }
+
+        }
+
+        .register-buttons {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+
+            .signup-button {
+                font-size: 20px;
+                padding: 10px 20px;
+                border-radius: 35px;
+                border: 2px $yellow-color solid;
+                background-color: $yellow-color;
+                transition: .3s;
+
+                &:hover {
+                    background-color: white;
+                }}
+
+            .google-button {
+                font-size: 20px;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 35px;
+                border: 2px $black-color solid;
+                background-color: $black-color;
+                transition: .3s;
+
+                &:hover {
+                    background-color: white;
+                    color: black;
+                }}
+            }
+
+        }
+
+        .logining-div {
+            margin-top: 100px;
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            align-items: center;
+
+
+            .logining-text {
+                font-size: 14px;
+            }
+
+            .logining-button {
+                width: 110px;
+                font-size: 15px;
+                padding: 10px 5px;
+                border-radius: 35px;
+                border: 2px $yellow-color solid;
+                background-color: $yellow-color;
+                transition: 0.3s;
+
+                &:hover {
+                    background-color: white;
+                }}
+            }
+
+        
+        }
+
+
+
