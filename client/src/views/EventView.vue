@@ -42,9 +42,9 @@
                 <div class="avatar-img"> <img v-bind:src="myProfile.avatar" class="avatar-img"> </div>
               </div>
               <div class="write-comment">
-                <input type="text">
+                <input type="text" v-model="newComment">
               </div>
-              <div class="send-comment"><span>Отправить</span></div>
+              <button class="send-comment" @click="sendComment"><span>Отправить</span></button>
             </div>
 
             <div class="someone-comment-div"
@@ -68,6 +68,7 @@
 
 <script>
 import axios from 'axios';
+import { useToast } from 'vue-toast-notification'
 
 export default {
   name: 'EventView',
@@ -83,6 +84,7 @@ export default {
       ownerUsernames: {},
       currentUserId: localStorage.getItem('currentUserId'),
       myProfile: [],
+      newComment: '',
 
     }
   },
@@ -92,6 +94,7 @@ export default {
     this.fetchEventData();
     this.getMyProfile();
     document.title = 'Loading...';
+    this.$toast = useToast()
   },
 
 
@@ -142,6 +145,44 @@ export default {
           const ownerEmail = this.Comments[0].owner;
           this.getProfileByEmail(ownerEmail); 
         }
+    },
+
+    async sendComment() {
+      if (!this.newComment.trim()) {
+        this.$toast.warning('Комментарий не может быть пустым');
+        return;
+      }
+
+      const eventId = this.$route.params.id;
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+        console.error("No token found in localStorage.");
+        this.$toast.warning('Для начала авторизуйтесь');
+        return;
+      }
+
+      try {
+        const response = await axios.post(`/api/v1/events/${eventId}/comment/`, {
+          comment: this.newComment
+        }, {
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        if (response.data) {
+          console.log("Comment posted:", response.data);
+          this.Comments.push(response.data); 
+          this.newComment = ""; 
+          this.getComment();
+        } else {
+          console.error("No data in the response.");
+        }
+      } catch (error) {
+        console.error("An error occurred while posting the comment:", error);
+        this.$toast.error('Не удалось отправить комментарий');
+      }
     },
 
     async getMyProfile() {
@@ -213,28 +254,28 @@ export default {
 
     async likeHandler() {
       const eventId = this.$route.params.id;
-      const token = localStorage.getItem("accessToken"); 
+      const token = localStorage.getItem("accessToken");
       if (!token) {
         console.error("No token found in localStorage.");
+        this.$toast.warning('Для начало авторизуйтесь');
+        return;
       }
 
       try {
         const response = await axios.post(`/api/v1/events/${eventId}/like/`, {}, {
           headers: {
-            "Authorization": `Bearer ${token}`
-          }
+            "Authorization": `Bearer ${token}`,
+          },
         });
 
         if (response.data) {
-          console.log(response.data)
+          console.log(response.data);
           if (response.data.message && response.data.message.includes('поставили лайк')) {
             this.event.likes += 1;
             this.event.userLiked = true;
-
           } else if (response.data.message && response.data.message.includes('убрали лайк')) {
             this.event.likes -= 1;
             this.event.userLiked = false;
-            this.renderKey++;
           }
         } else {
           console.error("No data in the response.");
@@ -242,8 +283,10 @@ export default {
       } catch (error) {
         console.log("token: ", token);
         console.error("An error occurred: ", error);
+        this.$toast.warning('Для начало авторизуйтесь');
       }
     },
+
 
 
 

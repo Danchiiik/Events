@@ -96,7 +96,7 @@ export default {
 
 
                     if (response.data && response.data.access && response.data.refresh) {
-                        const { access, refresh, user } = response.data;
+                        const { access, refresh} = response.data;
                         console.log("Access Token:", access);
                         console.log("Refresh Token:", refresh);
                     

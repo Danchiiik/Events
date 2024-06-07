@@ -48,8 +48,8 @@
               <label for="types" class="types">Тип мероприятия:</label> <br>
               <select name="types" id="types" class="types-select" v-model="filters.type" @change="applyFilters">
                 <option value="default">-</option>
-                <option value="1">Открытый</option>
-                <option value="2">Закрытый</option>
+                <option value="Открытый">Открытый</option>
+                <option value="Закрытый">Закрытый</option>
               </select>            
             </div>
           </div>
@@ -58,6 +58,13 @@
     </div>
       
       <div class="events-main">
+
+        <div class="search-div">
+          <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск...">
+          <button class="search-button" @click="applySearch"><span>Поиск</span></button>
+        </div>
+
+
         <div class="event-cards">
           <div class="box"
           v-for="event in filteredEvents"
@@ -100,7 +107,9 @@ export default {
         typeOfEvent: 'default',
         type: 'default',
         dateOrdering: null,
-      }
+      },
+      searchQuery: '',
+
     }
   },
   mounted() {
@@ -125,22 +134,37 @@ export default {
     },
 
     applyFilters() {
-    this.filteredEvents = this.Events.filter(event => {
-      return (this.filters.region === 'default' || event.region === this.filters.region) &&
-             (this.filters.typeOfEvent === 'default' || event.type_of_event === this.filters.typeOfEvent) &&
-             (this.filters.type === 'default' || event.type === this.filters.type);
-    });
+      this.applySearch(); 
+    },
 
-    console.log("Filtered events:", JSON.stringify(this.filteredEvents, null, 2));
-    if (this.filters.dateOrdering) {
-    if (this.filters.dateOrdering === 'asc') {
-      this.filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date)); // Added
-    } else if (this.filters.dateOrdering === 'desc') {
-      this.filteredEvents.sort((a, b) => new Date(b.date) - new Date(a.date)); // Added
-    }
-  }
+    applyFiltersToSearchResults() {
+      this.filteredEvents = this.filteredEvents.filter(event => {
+        const regionMatch = this.filters.region === 'default' || event.region === this.filters.region;
+        const typeOfEventMatch = this.filters.typeOfEvent === 'default' || event.type_of_event === this.filters.typeOfEvent;
+        const typeMatch = this.filters.type === 'default' || event.type === this.filters.type;
 
+        return regionMatch && typeOfEventMatch && typeMatch;
+      });
 
+      if (this.filters.dateOrdering) {
+        if (this.filters.dateOrdering === 'asc') {
+          this.filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+        } else if (this.filters.dateOrdering === 'desc') {
+          this.filteredEvents.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+      }
+    },
+
+    applySearch() {
+      const query = this.searchQuery.toLowerCase();
+      this.filteredEvents = this.Events.filter(event => {
+        return (
+          event.name.toLowerCase().includes(query) ||
+          this.getUsername(event.owner).toLowerCase().includes(query)
+        );
+      });
+
+      this.applyFiltersToSearchResults();
     },
 
     resetFilters() {
@@ -148,14 +172,15 @@ export default {
       this.filters.typeOfEvent = 'default';
       this.filters.type = 'default';
       this.filters.dateOrdering = null;
+      this.searchQuery = '';
       this.applyFilters();
     },
 
     toggleDateOrdering() {
-      if (this.filters.dateOrdering === 'asc') { // Changed
-        this.filters.dateOrdering = 'desc'; // Changed
+      if (this.filters.dateOrdering === 'asc') { 
+        this.filters.dateOrdering = 'desc'; 
       } else {
-        this.filters.dateOrdering = 'asc'; // Changed
+        this.filters.dateOrdering = 'asc'; 
       }
       this.applyFilters();
       },

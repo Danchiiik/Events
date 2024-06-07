@@ -15,3 +15,10 @@ export default {
   },
 }
 </script>
+
+
+
+
+<style>
+@import '../components/css/main.css';
+</style>

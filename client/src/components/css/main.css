@@ -692,9 +692,7 @@ img.logo-contact:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  margin-top: 50px;
 }
 
 .filter-create {
@@ -779,6 +777,49 @@ option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.search-div {
+  margin-top: 20px;
+  width: 1200px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.search-div .search-input {
+  width: 800px;
+  height: 40px;
+  border: 1px rgb(129, 129, 129) solid;
+  border-radius: 30px 0px 0px 30px;
+  padding: 10px 20px;
+}
+.search-div .search-button {
+  width: 100px;
+  height: 40px;
+  border: 2px #F2E318 solid;
+  background-color: #F2E318;
+  border-radius: 0px 30px 30px 0px;
+  margin-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.search-div .search-button:hover {
+  background-color: white;
 }
 
 .event-cards {
@@ -790,6 +831,7 @@ option {
   -webkit-column-gap: 75px;
      -moz-column-gap: 75px;
           column-gap: 75px;
+  row-gap: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 50px;
@@ -1187,7 +1229,7 @@ option {
 
 .profile-div {
   margin-top: 50px;
-  margin-bottom: 200px;
+  margin-bottom: 230px;
   width: 1600px;
   height: 700px;
   display: -webkit-box;

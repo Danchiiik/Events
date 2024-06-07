@@ -49,11 +49,6 @@
 import axios from 'axios'
 import { useToast } from 'vue-toast-notification'
 
-// Vue.use(Toast, {
-//   transition: "Vue-Toastification__bounce",
-//   maxToasts: 20,
-//   newestOnTop: true
-// });
 
 export default {
     name: "SignUpView",

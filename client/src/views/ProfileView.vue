@@ -64,10 +64,11 @@
                 <div class="profile-event-h">
                     <p>Мероприятии пользователя</p>
                 </div>                
-                <div class="profile-event-main">
-                    <div class="profile-event-card" 
+                <div class="profile-event-main" >
+                    <div class="profile-event-card" @click="redirectToDetail(event.id)"
                         v-for="event in Events"
-                        v-bind.key="event.id">
+                        v-bind.key="event.id"
+                        >
                     
                         <img v-bind:src="event.image" class="profile-event-img">
                         <div class="profile-event-name">
@@ -78,7 +79,7 @@
                         </div>
 
                         <div class="profile-event-card-buttons" v-if="IsProfileOwner">
-                                <button class="profile-event-del">Удалить</button>
+                                <button class="profile-event-del" @click="deleteEvent(event.id)">Удалить</button>
                                 <button class="profile-event-ch">Изменить</button>
                         </div>
                     </div>
@@ -210,7 +211,6 @@ export default {
               .catch(error => console.error('Error fetching the avatar:', error));
             }
           else {
-            console.log("ELSEEEEEEEEEEEEE", this.editProfile.avatar)
             formData.append('avatar', this.editProfile.avatar)
           }}
           
@@ -231,7 +231,6 @@ export default {
 
     handleAvatar(avatar) {
       const file = avatar.target.files[0];
-      console.log("FILEEEEEEEEEEEEEE", file)
       if (file) {
         this.editProfile.avatar = file;
       } 
@@ -245,6 +244,35 @@ export default {
         }
         
     },
+
+    async deleteEvent(eventId) {
+      const token = localStorage.getItem('accessToken');
+      if (!token) {
+      console.error("No token found in localStorage.");
+      }
+
+      try{
+        const response = await axios.delete(`api/v1/events/${eventId}/`,  {
+          headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        }
+        })
+        console.log('Event deleted successfully: ', response);
+
+        this.getEvent();
+      } catch (error) {
+        console.log('An error occured: ', error)
+      }
+    },
+    redirectToDetail(eventId) {
+      try {
+        this.$router.push({path:  `/events/${eventId}`});
+      } catch {
+        console.error("An error occurred: ", error); 
+      }
+    }, 
+    
 
     },
 
