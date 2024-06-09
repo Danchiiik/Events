@@ -36,24 +36,24 @@
                 <div v-if="editMode" class="edit-profile-form">
                     <form @submit.prevent="updateProfile">
                     <div class="change-avatar">
-                        <label for="avatar">Avatar image:</label>
-                        <input type="file" accept="image/" @change="handleAvatar" id="avatar">
+                        <label for="avatar">Аватар:</label>
+                        <input type="file" accept="image/*" @change="handleAvatar" id="avatar">
                     </div>
                     <div class="change-username">
-                        <label for="username">Username:</label>
+                        <label for="username">Имя пользователя:</label>
                         <input type="text" maxlength="100" v-model="editProfile.username" id="username">
                     </div>
                     <div class="change-url">
-                        <label for="url">URL:</label>
+                        <label for="url">Ссылка URL:</label>
                         <input type="text" v-model="editProfile.url" id="url">
                     </div>
                     <div class="change-des">
-                        <label for="description">Description:</label>
+                        <label for="description">Описание:</label>
                         <input type="text" v-model="editProfile.description" id="description">
                     </div>
                     <div class="change-buttons">
-                        <button class="change-buttons-save" type="submit">Save</button>
-                        <button class="change-buttons-cancel" type="button" @click="editMode = false">Cancel</button>
+                        <button class="change-buttons-save" type="submit">Сохранить</button>
+                        <button class="change-buttons-cancel" type="button" @click="editMode = false">Отмена</button>
                     </div>
                     </form>
                 </div>
@@ -65,12 +65,12 @@
                     <p>Мероприятии пользователя</p>
                 </div>                
                 <div class="profile-event-main" >
-                    <div class="profile-event-card" @click="redirectToDetail(event.id)"
+                    <div class="profile-event-card"
                         v-for="event in Events"
                         v-bind.key="event.id"
                         >
                     
-                        <img v-bind:src="event.image" class="profile-event-img">
+                        <img v-bind:src="event.image" class="profile-event-img" @click="redirectToDetail(event.id)">
                         <div class="profile-event-name">
                             <span>{{ formatName(event.name) }}</span>
                         </div>
@@ -80,7 +80,7 @@
 
                         <div class="profile-event-card-buttons" v-if="IsProfileOwner">
                                 <button class="profile-event-del" @click="deleteEvent(event.id)">Удалить</button>
-                                <button class="profile-event-ch">Изменить</button>
+                                  <button class="profile-event-ch" @click="changeEvent(event.id)">Изменить</button>
                         </div>
                     </div>
 
@@ -100,6 +100,7 @@
 
 <script>
 import axios from 'axios';
+import axiosInstance from '@/axiosSetup';
 
 export default {
     name: 'ProfileView',
@@ -143,7 +144,7 @@ export default {
     async getEvent() {
         const profileId = this.$route.params.id;
       try {
-        const response = await axios.get("/api/v1/events/");
+        const response = await axiosInstance.get("/api/v1/events/");
         const user = await axios.get(`api/v1/account/profile/${profileId}/`);
         const filtered = response.data.results.filter(event => event.owner == user.data.user);
 
@@ -171,7 +172,7 @@ export default {
       const profileId = this.$route.params.id;
       
       try {
-        const response = await axios.get(`/api/v1/account/profile/${profileId}/`)
+        const response = await axiosInstance.get(`/api/v1/account/profile/${profileId}/`)
         this.profile = response.data;
         this.nameProfile = response.data.username;
         this.editProfile = { ...response.data };
@@ -198,7 +199,6 @@ export default {
         formData.append('url', '')
       }
       if (this.editProfile.avatar) {
-        console.log('AAAAAAAAAAAAAAAAAAAAAa', this.editProfile.avatar)
 
         if (typeof this.editProfile.avatar === 'string'){
             fetch(this.editProfile.avatar)
@@ -215,9 +215,9 @@ export default {
           }}
           
 
-      const response = await axios.patch(`/api/v1/account/profile/${this.profile.id}/`, formData, {
+      const response = await axiosInstance.patch(`/api/v1/account/profile/${this.profile.id}/`, formData, {
         headers: {
-          "Authorization": `Bearer ${token}`,
+          // "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data"
         }
       });
@@ -252,9 +252,9 @@ export default {
       }
 
       try{
-        const response = await axios.delete(`api/v1/events/${eventId}/`,  {
+        const response = await axiosInstance.delete(`api/v1/events/${eventId}/`,  {
           headers: {
-          "Authorization": `Bearer ${token}`,
+          // "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         }
         })
@@ -265,9 +265,14 @@ export default {
         console.log('An error occured: ', error)
       }
     },
+
+    changeEvent(eventId) {
+      this.$router.push(`/change/${eventId}`)
+    },
+
     redirectToDetail(eventId) {
       try {
-        this.$router.push({path:  `/events/${eventId}`});
+        this.$router.push({path: `/events/${eventId}`});
       } catch {
         console.error("An error occurred: ", error); 
       }

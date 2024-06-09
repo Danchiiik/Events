@@ -19,13 +19,13 @@
                 <select name="region" id="region" class="regions-select" v-model="filters.region" @change="applyFilters">
                   <option value="default">-</option>
                   <option value="Бишкек">Бишкек</option>
-                <option value="Чуй">Чуй</option>
-                <option value="Талас">Талас</option>
-                <option value="Иссык-Куль">Иссык-Куль</option>
-                <option value="Жалал-Абад">Жалал-Абад</option>
-                <option value="Нарын">Нарын</option>
-                <option value="Ош">Ош</option>
-                <option value="Баткен">Баткен</option>
+                  <option value="Чуй">Чуй</option>
+                  <option value="Талас">Талас</option>
+                  <option value="Иссык-Куль">Иссык-Куль</option>
+                  <option value="Жалал-Абад">Жалал-Абад</option>
+                  <option value="Нарын">Нарын</option>
+                  <option value="Ош">Ош</option>
+                  <option value="Баткен">Баткен</option>
               </select> <br>
             </div>
             
@@ -60,7 +60,7 @@
       <div class="events-main">
 
         <div class="search-div">
-          <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск...">
+          <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск..." @keyup.enter="applySearch">
           <button class="search-button" @click="applySearch"><span>Поиск</span></button>
         </div>
 
@@ -94,6 +94,7 @@
 
 <script>
 import axios from 'axios';
+import axiosInstance from '@/axiosSetup';
 
 export default {
   name: 'HomeView',
@@ -119,7 +120,7 @@ export default {
   methods: {
     async getEvent() {
       try {
-        const response = await axios.get("/api/v1/events/");
+        const response = await axiosInstance.get("/api/v1/events/");
         this.Events = response.data.results;
         this.filteredEvents = this.Events;
         console.log("Events response: ", response.data);
@@ -200,7 +201,7 @@ export default {
 
     async ownerUsername(eventOwner) {
       try {
-        const response = await axios.get(`api/v1/account/profile/`);
+        const response = await axiosInstance.get(`api/v1/account/profile/`);
         const filteredResponse = response.data.filter(profile => profile.user === eventOwner);
         if (filteredResponse.length > 0) {
           this.usernames[eventOwner] = filteredResponse[0].username;
@@ -229,7 +230,7 @@ export default {
     formatPrice(priceString) {
       try {
 
-        if (priceString === null) {
+        if (priceString === null || priceString == 0) {
           return "Бесплатно";
         } else {
           return `${parseInt(priceString, 10)} сом`;

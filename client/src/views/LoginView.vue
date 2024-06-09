@@ -48,6 +48,7 @@
 
 <script>
 import axios from 'axios';
+import axiosInstance from '@/axiosSetup';
 import { mapActions } from 'vuex';
 import { useToast } from 'vue-toast-notification'
 
@@ -91,7 +92,7 @@ export default {
                 };
 
                 try {
-                    const response = await axios.post("/api/v1/account/login/", formData); 
+                    const response = await axiosInstance.post("/api/v1/account/login/", formData); 
                     console.log("Response received:", response.data);
 
 
@@ -103,7 +104,7 @@ export default {
                         await this.getProfileByEmail(this.email); 
                         const userNickname = this.profile.username;
 
-                    const profileResponse = await axios.get(`/api/v1/account/profile/`);
+                    const profileResponse = await axiosInstance.get(`/api/v1/account/profile/`);
                     const profiles = profileResponse.data;
                     const filteredResponse = profiles.filter(profile => profile.user === this.email)
                     const profileID = filteredResponse[0].id
@@ -135,7 +136,7 @@ export default {
         },
         async getProfileByEmail(ownerEmail) {
             try {
-                const response = await axios.get(`/api/v1/account/profile?email=${ownerEmail}`); 
+                const response = await axiosInstance.get(`/api/v1/account/profile?email=${ownerEmail}`); 
                 const profiles = response.data;
                 console.log("Profile data: ", response.data);
 

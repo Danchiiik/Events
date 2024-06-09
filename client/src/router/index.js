@@ -5,6 +5,8 @@ import EventView from '../views/EventView.vue'
 import LoginView from '../views/LoginView.vue'
 import AboutView from '../views/AboutView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import CreateEvent from '../views/CreateEventView.vue'
+import ChangeEvent from '../views/ChangeEventView.vue'
 
 const routes = [
   {
@@ -37,13 +39,25 @@ const routes = [
     name: 'profile',
     component: ProfileView,
   },
+  {
+    path: '/create',
+    name: 'create',
+    component: CreateEvent,
+  },
+  {
+    path: '/change/:id',
+    name: 'change',
+    component: ChangeEvent,
+  },
+  
+
 
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(savedPosition) {
     if (savedPosition) {
       return savedPosition;
     } else {

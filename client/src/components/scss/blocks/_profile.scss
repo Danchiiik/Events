@@ -335,6 +335,10 @@
                 background-size: contain;
                 border-radius: 15px;
                 margin-bottom: 5px;
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
 
             .profile-event-name {

@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios'
+import axiosInstance from '@/axiosSetup';
 import { useToast } from 'vue-toast-notification'
 
 
@@ -102,7 +103,7 @@ export default {
                     password2: this.password2
                 }
 
-                axios
+                axiosInstance
                 .post("api/v1/account/register/", formData)
                 .then(response => {
                     this.IsRegistered =true

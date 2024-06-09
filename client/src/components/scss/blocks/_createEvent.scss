@@ -1,0 +1,273 @@
+.create-event-section {
+    display: flex;
+    justify-content: center;
+
+    .container {
+        width: 1600px;
+        height: 1000px;
+        margin: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;   
+    }
+
+}
+
+
+.create-event-form {
+    width: 900px;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;   
+}
+
+.create-event-info {
+    width: 900px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-event-name-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+
+.create-event-img-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        margin-top: 5px;
+    }
+}
+
+
+.create-event-des-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+
+.create-event-region-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    select {
+        margin-top: 5px;
+        width: 300px;
+        border: 1px rgb(138, 138, 138) solid;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+}
+
+.create-event-address-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+
+.create-event-date-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        width: 200px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+.create-event-time-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        width: 200px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+.create-event-types-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    select {
+        margin-top: 5px;
+        width: 300px;
+        border: 1px rgb(138, 138, 138) solid;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+}
+
+.create-event-type-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    select {
+        margin-top: 5px;
+        width: 300px;
+        border: 1px rgb(138, 138, 138) solid;
+        border-radius: 15px;
+        padding: 5px 10px;
+    }
+}
+
+
+.create-event-price-div {
+    width: 800px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+
+    span {
+        font-size: 20px;
+        font-weight: 600;
+    };
+
+    input {
+        width: 200px;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px rgb(107, 107, 107) solid;
+        margin-top: 5px;
+    }
+}
+
+
+
+.create-buttons {
+    width: 900px;
+    height: 50px;
+    display: flex;
+    justify-content: end;
+    padding-right: 50px;
+    align-items: center;
+    column-gap: 50px;
+
+
+    .create-button {
+        border: 2px $yellow-color solid;
+        padding: 10px 20px;
+        border-radius: 25px;
+        background-color: $yellow-color;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    .cancel-button {
+        border: 2px black solid;
+        padding: 10px 20px;
+        border-radius: 25px;
+        color: white;
+        background-color: black;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}

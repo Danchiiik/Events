@@ -795,7 +795,7 @@ option {
           align-items: center;
 }
 .search-div .search-input {
-  width: 800px;
+  width: 775px;
   height: 40px;
   border: 1px rgb(129, 129, 129) solid;
   border-radius: 30px 0px 0px 30px;
@@ -905,6 +905,7 @@ option {
 .home-event .container {
   max-width: 1600px;
   min-height: 800px;
+  margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -959,7 +960,7 @@ option {
           justify-content: space-between;
 }
 .content .img-event .like-fav .like-div {
-  width: 120px;
+  width: 100px;
   height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1040,12 +1041,16 @@ option {
 .content .infoo-event .main-event-date-p, .content .infoo-event .main-event-time-p, .content .infoo-event .main-event-type-p, .content .infoo-event .main-event-price-p {
   margin-top: 10px;
 }
+.content .infoo-event .main-event-owner:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .descr-div {
-  width: 1500px;
-  min-height: 400px;
-  max-height: 400px;
-  margin-bottom: 100px;
+  width: 1400px;
+  min-height: 300px;
+  max-height: 300px;
+  margin-bottom: 90px;
   margin-left: 100px;
 }
 .descr-div .descr-p {
@@ -1634,6 +1639,9 @@ option {
   border-radius: 15px;
   margin-bottom: 5px;
 }
+.profile-event-div .profile-event-main .profile-event-card .profile-event-img:hover {
+  cursor: pointer;
+}
 .profile-event-div .profile-event-main .profile-event-card .profile-event-name {
   width: 350px;
   max-height: 45px;
@@ -1690,4 +1698,660 @@ option {
 }
 .profile-event-div .profile-event-main .profile-event-card .profile-event-card-buttons .profile-event-ch:hover {
   background-color: white;
+}
+
+.create-event-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.create-event-section .container {
+  width: 1600px;
+  height: 1000px;
+  margin: 20px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.create-event-form {
+  width: 900px;
+  height: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.create-event-info {
+  width: 900px;
+  height: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create-event-name-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-name-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-name-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-event-img-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-img-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-img-div input {
+  margin-top: 5px;
+}
+
+.create-event-des-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-des-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-des-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-event-region-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-region-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-region-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.create-event-address-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-address-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-address-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-event-date-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-date-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-date-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-event-time-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-time-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-time-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-event-types-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-types-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-types-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.create-event-type-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-type-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-type-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.create-event-price-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.create-event-price-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.create-event-price-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.create-buttons {
+  width: 900px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding-right: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 50px;
+     -moz-column-gap: 50px;
+          column-gap: 50px;
+}
+.create-buttons .create-button {
+  border: 2px #F2E318 solid;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #F2E318;
+}
+.create-buttons .create-button:hover {
+  background-color: white;
+}
+.create-buttons .cancel-button {
+  border: 2px black solid;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  background-color: black;
+}
+.create-buttons .cancel-button:hover {
+  background-color: white;
+  color: black;
+}
+
+.change-event-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.change-event-section .container {
+  width: 1600px;
+  height: 1000px;
+  margin: 20px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.change-event-form {
+  width: 900px;
+  height: 900px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.change-event-info {
+  width: 900px;
+  height: 800px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.change-event-name-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-name-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-name-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-event-img-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-img-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-img-div input {
+  margin-top: 5px;
+}
+
+.change-event-des-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-des-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-des-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-event-region-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-region-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-region-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.change-event-address-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-address-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-address-div input {
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-event-date-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-date-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-date-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-event-time-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-time-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-time-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-event-types-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-types-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-types-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.change-event-type-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-type-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-type-div select {
+  margin-top: 5px;
+  width: 300px;
+  border: 1px rgb(138, 138, 138) solid;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.change-event-price-div {
+  width: 800px;
+  height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.change-event-price-div span {
+  font-size: 20px;
+  font-weight: 600;
+}
+.change-event-price-div input {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px rgb(107, 107, 107) solid;
+  margin-top: 5px;
+}
+
+.change-buttons {
+  width: 900px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding-right: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 50px;
+     -moz-column-gap: 50px;
+          column-gap: 50px;
+}
+.change-buttons .change-button {
+  border: 2px #F2E318 solid;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #F2E318;
+}
+.change-buttons .change-button:hover {
+  background-color: white;
+}
+.change-buttons .change-cancel {
+  border: 2px black solid;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  background-color: black;
+}
+.change-buttons .change-cancel:hover {
+  background-color: white;
+  color: black;
 }

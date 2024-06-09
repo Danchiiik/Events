@@ -6,7 +6,7 @@
         <div class="nav-menu">
           <div class="home-link-div">
             <router-link class="home-link" to="/"><i>Events.kg</i></router-link>
-            <router-link to="" v-if="isAuthenticated" class="router-create"><p class="create">Создать</p></router-link>
+            <router-link to="/create" v-if="isAuthenticated" class="router-create"><p class="create">Создать</p></router-link>
           </div>
           <ul class="nav__list" v-if="showNav && !isAuthenticated">
             <li class="nav__list-item">

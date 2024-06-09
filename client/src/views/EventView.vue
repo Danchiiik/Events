@@ -18,11 +18,11 @@
             <div class="infoo-event">
               <div class="info-event-div">
                 <span class="main-event-name">{{ event.name }}</span>
-                <p class="main-event-owner-p">Организатор:</p><span class="main-event-owner"> {{ ownerUsernames[event.owner] }}</span>
+                <p class="main-event-owner-p">Организатор:</p><span class="main-event-owner" @click="redicrectToUser(event.owner)"> {{ ownerUsernames[event.owner] }}</span>
                 <p class="main-event-types-p">Вид:</p><span class="main-event-types">{{ event.type_of_event }}</span>
                 <p class="main-event-region-p">Регион:</p><span class="main-event-region">{{ event.region }}</span>
                 <p class="main-event-address-p">Адрес:</p><span class="main-event-address">{{ event.address }}</span>
-                <p class="main-event-date-p">Дата:</p><span class="main-event-date">{{formatDate(event.date) }}</span>
+                <p class="main-event-date-p">Дата:</p><span class="main-event-date">{{ formatDate(event.date)}}</span>
                 <p class="main-event-time-p">Время:</p><span class="main-event-time">{{ event.time }}</span>
                 <p class="main-event-type-p">Тип:</p><span class="main-event-type">{{ event.type }}</span>
                 <p class="main-event-price-p">Цена:</p><span class="main-event-price">{{formatPrice(event.price) }}</span>
@@ -69,6 +69,7 @@
 <script>
 import axios from 'axios';
 import { useToast } from 'vue-toast-notification'
+import axiosInstance from '@/axiosSetup';
 
 export default {
   name: 'EventView',
@@ -102,7 +103,7 @@ export default {
     async getEvent() {
       const eventId = this.$route.params.id;
       try {
-        const response = await axios.get(`/api/v1/events/${eventId}/`);
+        const response = await axiosInstance.get(`/api/v1/events/${eventId}/`);
         this.event = response.data;
         this.nameEvent = response.data.name;
         document.title = this.nameEvent;
@@ -113,10 +114,17 @@ export default {
       }
     },
 
+    async redicrectToUser(ownerEmail) {
+      const response = await axiosInstance.get(`/api/v1/account/profile/`); 
+      const profiles = response.data;
+      const profile = profiles.filter(profile => profile.user === ownerEmail )
+      this.$router.push(`/profile/${profile[0].id}/`)
+    },
+
     async getOwnerUsername(ownerId) {
       if (!this.ownerUsernames[ownerId]) {
         try {
-          const response = await axios.get(`/api/v1/account/profile/`);
+          const response = await axiosInstance.get(`/api/v1/account/profile/`);
           const profile = response.data.find(profile => profile.user === ownerId);
           if (profile) {
             this.ownerUsernames[ownerId] = profile.username;
@@ -134,7 +142,7 @@ export default {
     async getComment() {
       const eventId = this.$route.params.id;
       try {
-        const response = await axios.get(`/api/v1/events/${eventId}`);
+        const response = await axiosInstance.get(`/api/v1/events/${eventId}`);
         this.Comments = response.data.comments
         console.log("Comments response: ", response.data.comments);
       } catch (error) {
@@ -162,11 +170,11 @@ export default {
       }
 
       try {
-        const response = await axios.post(`/api/v1/events/${eventId}/comment/`, {
+        const response = await axiosInstance.post(`/api/v1/events/${eventId}/comment/`, {
           comment: this.newComment
         }, {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            // "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           }
         });
@@ -187,14 +195,14 @@ export default {
 
     async getMyProfile() {
       try {
-        const response = await axios.get(`api/v1/account/profile/${this.currentUserId}/`)
+        const response = await axiosInstance.get(`api/v1/account/profile/${this.currentUserId}/`)
         this.myProfile = response.data
       } catch {}
     },
     
     async getProfileByEmail(ownerEmail) {
       try {
-        const response = await axios.get(`/api/v1/account/profile?email=${ownerEmail}`); 
+        const response = await axiosInstance.get(`/api/v1/account/profile?email=${ownerEmail}`); 
         const profiles = response.data;
         console.log("Profile data: ", response.data);
 
@@ -215,7 +223,6 @@ export default {
         const [year, month, day] = dateString.split('-');
         return `${day}/${month}/${year}`;
       } catch (error) {
-        console.error("An error occurred: ", error); 
       }
     },
 
@@ -245,7 +252,7 @@ export default {
     async fetchEventData() {
       const eventId = this.$route.params.id;
       try {
-        const response = await axios.get(`/api/v1/events/${eventId}`);
+        const response = await axiosInstance.get(`/api/v1/events/${eventId}`);
         this.event = response.data;
       } catch (error) {
         console.error("Failed to fetch event data:", error);
@@ -262,9 +269,9 @@ export default {
       }
 
       try {
-        const response = await axios.post(`/api/v1/events/${eventId}/like/`, {}, {
+        const response = await axiosInstance.post(`/api/v1/events/${eventId}/like/`, {}, {
           headers: {
-            "Authorization": `Bearer ${token}`,
+            // "Authorization": `Bearer ${token}`,
           },
         });
 
@@ -273,9 +280,11 @@ export default {
           if (response.data.message && response.data.message.includes('поставили лайк')) {
             this.event.likes += 1;
             this.event.userLiked = true;
+
           } else if (response.data.message && response.data.message.includes('убрали лайк')) {
             this.event.likes -= 1;
             this.event.userLiked = false;
+    
           }
         } else {
           console.error("No data in the response.");
@@ -286,9 +295,6 @@ export default {
         this.$toast.warning('Для начало авторизуйтесь');
       }
     },
-
-
-
 
   },
 

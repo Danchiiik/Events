@@ -6,12 +6,10 @@
     .container {
         max-width: 1600px;
         min-height: 800px;
-        // border: 2px black solid;
+        margin-top: 20px;
         display: flex;
-        // justify-content: space-around;
         margin-bottom: 100px;
         flex-direction: column;
-        // margin-bottom: 200px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;   
     }
 }
@@ -19,18 +17,12 @@
 .content {
     max-width: 1600px;
     min-height: 620px;
-    // border: 2px green solid;
     display: flex;
-    
-    // flex-direction: column;
-    // flex-wrap: wrap;
-    // align-items: center;
 
 
     .img-event {
         min-width: 1000px;
         height: 600px;
-        // border: 2px red solid;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -47,17 +39,16 @@
             margin-top: 10px;
             height: 50px;
             width: 800px;
-            // border: 2px yellow solid;
             display: flex;
             justify-content: space-between;
 
             .like-div {
-                width: 120px;
+                width: 100px;
                 height: 50px;
-                // border: 2px red solid;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
 
                 .like {
                     height: 50px;
@@ -131,7 +122,11 @@
         .main-event-date-p, .main-event-time-p, .main-event-type-p, .main-event-price-p {
             margin-top: 10px;
 
+        }
 
+        .main-event-owner:hover {
+            text-decoration: underline;
+            cursor: pointer;
         }
 
 
@@ -142,10 +137,10 @@
 
 
 .descr-div {
-    width: 1500px;
-    min-height: 400px;
-    max-height: 400px;
-    margin-bottom: 100px;
+    width: 1400px;
+    min-height: 300px;
+    max-height: 300px;
+    margin-bottom: 90px;
     margin-left: 100px;
 
     .descr-p {
@@ -155,6 +150,7 @@
 
     .descr {
         font-size: 20px;
+
     }
 
 }
