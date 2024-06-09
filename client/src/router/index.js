@@ -7,6 +7,7 @@ import AboutView from '../views/AboutView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import CreateEvent from '../views/CreateEventView.vue'
 import ChangeEvent from '../views/ChangeEventView.vue'
+import ForgotPassword from '../views/ForgotPasswordView.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/change/:id',
     name: 'change',
     component: ChangeEvent,
+  },
+  {
+    path: '/forgot_password',
+    name: 'forgotPassword',
+    component: ForgotPassword,
   },
   
 

@@ -31,11 +31,11 @@
                             </router-link>
                         </div>
                             
+                        <router-link to="/forgot_password">
                         <div class="forgot-password-div">
-                            <router-link to="/forgot_password">
                                 <span class="forgot-password">Забыли пароль?</span>
-                            </router-link>
-                        </div>
+                            </div>
+                        </router-link>
                     </div>
 
                 </form>
