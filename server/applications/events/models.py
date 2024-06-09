@@ -36,7 +36,7 @@ class Events(models.Model):
     name = models.CharField(max_length=100)
     image = models.FileField(upload_to='images/')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=1500)
     region = models.CharField(max_length=50, choices=REGION)
     address = models.CharField(max_length=100)
     date = models.DateField()
