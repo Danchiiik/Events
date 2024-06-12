@@ -30,6 +30,7 @@
 
                     <div class="profile-button-div" v-if="IsProfileOwner">
                         <button class="change-profile" @click="editMode = true">Изменить профиль</button>
+                        <button class="my-favourites" @click="redirectToFav"><img src="../../static_files/free-icon-bookmark-3983855.png" alt=""> </button>
                     </div>
                 </div>
 
@@ -223,6 +224,7 @@ export default {
       });
       this.profile = response.data;
       this.editMode = false;
+      location.reload();
       console.log("Profile updated: ", response.data);
     } catch (error) {
       console.error("An error occurred while updating the profile: ", error);
@@ -268,6 +270,10 @@ export default {
 
     changeEvent(eventId) {
       this.$router.push(`/change/${eventId}`)
+    },
+
+    redirectToFav() {
+      this.$router.push('/myfavourites')
     },
 
     redirectToDetail(eventId) {

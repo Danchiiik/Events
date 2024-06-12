@@ -133,6 +133,10 @@ export default {
       } else {
         console.error("Profile not found");
       }
+      
+      setTimeout(() => {
+      location.reload();
+      }, 10);  
     },
 
   },

@@ -87,6 +87,20 @@
           </div>
           </div>
         </div>
+
+        <div class="pagination">
+          <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1" class="prev-button">Previous</button>
+          <button v-if="currentPage > 2" @click="changePage(1)" class="current-page">1</button>
+          <span v-if="currentPage > 3">...</span>
+          <button v-if="currentPage > 1" @click="changePage(currentPage - 1)" class="current-page">{{ currentPage - 1 }}</button>
+          <button @click="changePage(currentPage)" :class="{ active: true }" class="current-page">{{ currentPage }}</button>
+          <button v-if="currentPage < totalPages" @click="changePage(currentPage + 1)" class="current-page">{{ currentPage + 1 }}</button>
+          <span v-if="currentPage < totalPages - 2">...</span>
+          <button v-if="currentPage < totalPages - 1" @click="changePage(totalPages)" class="current-page">{{ totalPages }}</button>
+          <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages" class="next-button">Next</button>
+        </div>
+
+
       </div>
     </div>
   </section>
@@ -110,6 +124,9 @@ export default {
         dateOrdering: null,
       },
       searchQuery: '',
+      currentPage: 1,
+      totalPages: 0,
+      itemsPerPage: 18,
 
     }
   },
@@ -118,11 +135,15 @@ export default {
     document.title = "Events.kg";
   },
   methods: {
-    async getEvent() {
+    async getEvent(page = 1) {
       try {
-        const response = await axiosInstance.get("/api/v1/events/");
+        const response = await axiosInstance.get(`/api/v1/events/?page=${page}&limit=${this.itemsPerPage}`);
         this.Events = response.data.results;
         this.filteredEvents = this.Events;
+
+
+        this.totalPages = Math.ceil(response.data.count / this.itemsPerPage) 
+        console.log('Total pages', this.totalPages)
         console.log("Events response: ", response.data);
 
         this.Events.forEach(event => {
@@ -134,8 +155,16 @@ export default {
       }
     },
 
-    applyFilters() {
+    async applyFilters() {
       this.applySearch(); 
+    },
+
+    async changePage(page) {
+      if (page >= 1 && page <= this.totalPages) {
+        this.currentPage = page;
+        this.resetFilters();
+        await this.getEvent(page);
+      }
     },
 
     applyFiltersToSearchResults() {
@@ -156,7 +185,7 @@ export default {
       }
     },
 
-    applySearch() {
+    async applySearch() {
       const query = this.searchQuery.toLowerCase();
       this.filteredEvents = this.Events.filter(event => {
         return (
@@ -164,7 +193,7 @@ export default {
           this.getUsername(event.owner).toLowerCase().includes(query)
         );
       });
-
+      
       this.applyFiltersToSearchResults();
     },
 

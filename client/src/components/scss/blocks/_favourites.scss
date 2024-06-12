@@ -1,0 +1,69 @@
+.fav-section {
+    display: flex;
+    justify-content: center;
+
+    
+    .container {
+        max-width: 1600px;
+        min-height: 600px;
+        margin-top: 50px;
+        justify-content: space-around;
+        margin-bottom: 250px;
+        flex-direction: column;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;    
+        display: flex;
+        align-items: center;
+
+    }   
+}
+
+
+.fav-main-div {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.fav-header {
+    width: 1200px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    span {
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
+
+
+.fav-event-cards {
+    max-width: 1200px;
+    min-height: 600px;
+    display: flex;
+    column-gap: 75px;
+    row-gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+
+    .box {
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        width: 350px;
+        height: 500px;
+        transition: all 0.3s;
+
+
+        &:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+
+        }
+    }
+
+}

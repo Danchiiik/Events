@@ -8,6 +8,7 @@ import ProfileView from '../views/ProfileView.vue'
 import CreateEvent from '../views/CreateEventView.vue'
 import ChangeEvent from '../views/ChangeEventView.vue'
 import ForgotPassword from '../views/ForgotPasswordView.vue'
+import Favourites from '../views/FavouriteView.vue'
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     name: 'forgotPassword',
     component: ForgotPassword,
   },
+  {
+    path: '/myfavourites',
+    name: 'myfavourites',
+    component: Favourites,
+  }
   
 
 

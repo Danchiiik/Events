@@ -117,6 +117,11 @@ export default {
                         });
 
                         this.$router.push('/');
+
+                        setTimeout(() => {
+                        location.reload();
+                        }, 10);
+
                     } else {
                         this.errors.push("Invalid response format");
                     }

@@ -6,13 +6,22 @@
               <img v-bind:src="event.image" class="main-img">
               <div class="like-fav">
                 <div class="like-div">
-                  <div class="like" @click="likeHandler" ><img src="../../static_files/free-icon-heart-8181213.png" class="like-sign"></div>
+
+                  <div class="like" @click="likeHandler">
+                    <img src="../../static_files/free-icon-heart-2107845.png" class="like-sign" v-if="this.LikeUser">
+                    <img src="../../static_files/free-icon-heart-shape-silhouette-25451.png" class="like-sign" v-else>
+                  </div>
+
                     <div class="like-count">
-                      <span ref="MyLike">{{ event.likes }}</span>
+                      <span>{{ event.likes }}</span>
                     </div>
                 </div>
 
-                <div class="favourite"><img src="../../static_files/free-icon-bookmark-2710704.png" class="fav-sign"></div>
+
+                <div class="favourite" @click="FavouriteHandler">
+                  <img src="../../static_files/free-icon-bookmark-3983871.png" v-if="!this.favourite" class="fav-sign">
+                  <img src="../../static_files/free-icon-bookmark-3983855.png" v-else class="fav-sign">
+                </div>
               </div>
             </div>
             <div class="infoo-event">
@@ -42,7 +51,7 @@
                 <div class="avatar-img"> <img v-bind:src="myProfile.avatar" class="avatar-img"> </div>
               </div>
               <div class="write-comment">
-                <input type="text" v-model="newComment">
+                <input type="text" v-model="newComment" @keyup.enter="sendComment">
               </div>
               <button class="send-comment" @click="sendComment"><span>Отправить</span></button>
             </div>
@@ -51,7 +60,7 @@
             v-for="comment in Comments"
             v-bind:key="comment.id"
             >
-              <div class="someone-comment-avatar">
+              <div class="someone-comment-avatar" @click="redicrectToUser(comment.owner)">
                 <div class="someone-avatar-img"><img v-bind:src="profile.avatar" class="someone-avatar-img-main"></div>
               </div>
               <div class="someone-comment-group">
@@ -75,8 +84,9 @@ export default {
   name: 'EventView',
   data() {
     return {
+      LikeUser: false,
+      favourite: false,
       event: {
-        userLiked: false,
         likes: 0,
       },
       Comments: [],
@@ -92,7 +102,6 @@ export default {
   mounted() {
     this.getEvent();
     this.getComment();
-    this.fetchEventData();
     this.getMyProfile();
     document.title = 'Loading...';
     this.$toast = useToast()
@@ -143,7 +152,7 @@ export default {
       const eventId = this.$route.params.id;
       try {
         const response = await axiosInstance.get(`/api/v1/events/${eventId}`);
-        this.Comments = response.data.comments
+        this.Comments = response.data.comments.reverse()
         console.log("Comments response: ", response.data.comments);
       } catch (error) {
         console.error("An error occurred: ", error);
@@ -232,7 +241,11 @@ export default {
 
         if (priceString === null) {
           return "Бесплатно";
-        } else {
+        } 
+        else if (priceString == 0) {
+          return "Бесплатно";
+        } 
+        else {
           return `${parseInt(priceString, 10)} сом`;
         }
       } catch {
@@ -246,16 +259,6 @@ export default {
         window.location.href = eventId;
       } catch {
         console.error("An error occurred: ", error); 
-      }
-    },
-
-    async fetchEventData() {
-      const eventId = this.$route.params.id;
-      try {
-        const response = await axiosInstance.get(`/api/v1/events/${eventId}`);
-        this.event = response.data;
-      } catch (error) {
-        console.error("Failed to fetch event data:", error);
       }
     },
 
@@ -274,19 +277,23 @@ export default {
             // "Authorization": `Bearer ${token}`,
           },
         });
+        
+        if (!response) {
+          return
+        } 
+        
+        if (response.data.includes('поставили лайк')) {
+          this.event.likes += 1;
+          this.LikeUser = true;
+          localStorage.setItem('LikeUser', JSON.stringify(this.LikeUser));
 
-        if (response.data) {
-          console.log(response.data);
-          if (response.data.message && response.data.message.includes('поставили лайк')) {
-            this.event.likes += 1;
-            this.event.userLiked = true;
+        } else if (response.data.includes('убрали лайк')) {
+          this.event.likes -= 1;
+          this.LikeUser = false;
+          localStorage.setItem('LikeUser', JSON.stringify(this.LikeUser));
+        }
 
-          } else if (response.data.message && response.data.message.includes('убрали лайк')) {
-            this.event.likes -= 1;
-            this.event.userLiked = false;
-    
-          }
-        } else {
+        else {
           console.error("No data in the response.");
         }
       } catch (error) {
@@ -296,7 +303,62 @@ export default {
       }
     },
 
+    async FavouriteHandler() {
+      const eventId = this.$route.params.id;
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        console.error("No token found in localStorage.");
+        this.$toast.warning('Для начало авторизуйтесь');
+        return;
+      }
+
+      try {
+        const response = await axiosInstance.post(`/api/v1/events/${eventId}/favourite/`, {}, {
+          headers: {
+            // "Authorization": `Bearer ${token}`,
+          },
+        });
+
+        console.log('FFFFFFFFFFFFFFFFFFF', response.data)
+        
+        if (!response) {
+          return
+        } 
+        
+        if (response.data.includes('Сохранены')) {
+          this.favourite = true;
+          localStorage.setItem('FavouriteUser', JSON.stringify(this.favourite));
+
+        } else if (response.data.includes('Удалены')) {
+          this.favourite = false;
+          localStorage.setItem('FavouriteUser', JSON.stringify(this.favourite));
+        }
+
+        else {
+          console.error("No data in the response.");
+        }
+      } catch (error) {
+        console.log("token: ", token);
+        console.error("An error occurred: ", error);
+        this.$toast.warning('Для начало авторизуйтесь');
+      }
+    },
+
+
   },
+
+    created() {
+    const likeUser = localStorage.getItem('LikeUser');
+    if (likeUser !== null) {
+      this.LikeUser = JSON.parse(likeUser);
+    }
+
+    const favouriteUser = localStorage.getItem('FavouriteUser');
+    if (favouriteUser !== null) {
+      this.favourite = JSON.parse(favouriteUser);
+    }
+  },
+
 
 }
 
