@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Montserrat, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+
+        h1 {
+            font-style: italic;
+            font-size: 50px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .code {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: black;
+            background: #F2E318;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Events.kg</h1>
+        <h2>Здравствуйте, {{ email }}</h2>
+        <p>Скопируйте этот код для восстановления пароля:</p>
+        <div class="code">{{ code }}</div>
+    </div>
+</body>
+</html>

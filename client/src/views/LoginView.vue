@@ -67,6 +67,7 @@ export default {
     },
     methods: {
         ...mapActions(['login']),
+
         async submitForm() { 
             this.errors = [];
 

@@ -113,6 +113,7 @@ export default {
 
         const response = await axios.get(`/api/v1/account/profile/${this.Profile.id}/`)
         this.UserName = response.data.username
+ 
 
         } else {
           this.Profile = null;

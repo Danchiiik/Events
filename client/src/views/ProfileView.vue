@@ -190,6 +190,8 @@ export default {
       console.error("No token found in localStorage.");
     }
 
+    console.log('BBBBBBBBBBBBBBBBBBB', token)
+
     try {
       const formData = new FormData();
       formData.append('username', this.editProfile.username);

@@ -85,4 +85,11 @@ def generate_jwt_token(request):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }
-    return JsonResponse(token)
+    
+    request.session['access'] = token['access']
+    request.session['refresh'] = token['refresh']
+
+
+    redirect_url = f"http://localhost:8080/google-callback?access={token['access']}&refresh={token['refresh']}"
+    
+    return redirect(redirect_url)

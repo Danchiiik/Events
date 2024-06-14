@@ -229,7 +229,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-LOGIN_REDIRECT_URL = '/api/v1/account/'
+LOGIN_REDIRECT_URL = '/api/v1/account/generate-jwt-token/'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -238,3 +238,4 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 SOCIALACCOUNT_ADAPTER = 'applications.accounts.adapters.CustomSocialAccountAdapter'
+SOCIALACCOUNT_LOGIN_ON_GET=True

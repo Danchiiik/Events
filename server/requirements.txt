@@ -11,3 +11,5 @@ drf-yasg
 celery[redis]
 django-allauth
 django-allauth[socialaccount]
+requests
+jwt

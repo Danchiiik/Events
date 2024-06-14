@@ -9,6 +9,9 @@ import CreateEvent from '../views/CreateEventView.vue'
 import ChangeEvent from '../views/ChangeEventView.vue'
 import ForgotPassword from '../views/ForgotPasswordView.vue'
 import Favourites from '../views/FavouriteView.vue'
+import GoogleView from '@/views/GoogleView.vue'
+
+import axios from 'axios'
 
 const routes = [
   {
@@ -60,7 +63,47 @@ const routes = [
     path: '/myfavourites',
     name: 'myfavourites',
     component: Favourites,
-  }
+  },
+  {
+    path: '/google',
+    name: 'GoogleLogin',
+    component: {
+      created() {
+        window.location.href = `${axios.defaults.baseURL}/accounts/google/login/?next=${window.location.origin}/google-callback`;
+      }
+    }
+  },
+  {
+    path: '/google-callback',
+    name: 'GoogleCallback',
+    component: GoogleView,
+  },
+
+  // {
+  //   path: '/google-callback',
+  //   name: 'GoogleCallback',
+  //   component: {
+  //     created() {
+  //       const urlParams = new URLSearchParams(window.location.search);
+  //       const accessToken = urlParams.get('access');
+  //       const refreshToken = urlParams.get('refresh');
+  
+  //       if (accessToken && refreshToken) {
+  //         localStorage.setItem('accessToken', accessToken);
+  //         localStorage.setItem('refreshToken', refreshToken);
+  
+  //         // Redirect to the main page
+  //         this.$router.push('/').then(() => {
+  //           window.location.reload();
+  //         })
+  //       } else {
+  //         console.error('Error: Tokens not found in URL parameters');
+  //         this.$router.push('/login');
+  //       }
+  //     },
+  //     template: '<div>Processing login...</div>'
+  //   }
+  // }
   
 
 
