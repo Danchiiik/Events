@@ -73,7 +73,11 @@ SOCIALACCOUNT_PROVIDER = {
             'profile',
             'email'
         ],
-        'AUTH_PARAMS': {'access_type': 'online'}
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+            'prompt': 'select_account',
+            'approval_prompt': 'force',
+            }
     }
 }
 
@@ -239,3 +243,6 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 SOCIALACCOUNT_ADAPTER = 'applications.accounts.adapters.CustomSocialAccountAdapter'
 SOCIALACCOUNT_LOGIN_ON_GET=True
+ACCOUNT_LOGOUT_ON_GET=True
+ACCOUNT_SESSION_REMEMBER=False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

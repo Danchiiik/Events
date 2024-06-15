@@ -12,4 +12,3 @@ celery[redis]
 django-allauth
 django-allauth[socialaccount]
 requests
-jwt

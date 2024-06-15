@@ -74,6 +74,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import axios from 'axios';
+import axiosInstance from './axiosSetup';
 
 export default {
 
@@ -105,13 +106,13 @@ export default {
     async getProfile() {
       this.loading = true;
       try {
-        const response = await axios.get(`/api/v1/account/profile/`);
+        const response = await axiosInstance.get(`/api/v1/account/profile/`);
         const filteredResponse = response.data.filter(profile => profile.id == this.currentUserId);
 
         if (filteredResponse.length > 0) {
           this.Profile = filteredResponse[0];
 
-        const response = await axios.get(`/api/v1/account/profile/${this.Profile.id}/`)
+        const response = await axiosInstance.get(`/api/v1/account/profile/${this.Profile.id}/`)
         this.UserName = response.data.username
  
 
