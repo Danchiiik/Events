@@ -100,7 +100,14 @@ export default {
 
     handleLogout() {
       this.logout();
-      this.$router.push('/');
+      try {
+        window.location.href = `${axios.defaults.baseURL}/api/v1/account/logout/`
+        this.$router.push('/');
+      }
+      catch {
+        this.$router.push('/')
+      }
+
     },
 
     async getProfile() {

@@ -11,6 +11,7 @@
                     <img src="../../static_files/free-icon-heart-2107845.png" class="like-sign" v-if="this.LikeUser">
                     <img src="../../static_files/free-icon-heart-shape-silhouette-25451.png" class="like-sign" v-else>
                   </div>
+                  
 
                     <div class="like-count">
                       <span>{{ event.likes }}</span>
@@ -19,8 +20,8 @@
 
 
                 <div class="favourite" @click="FavouriteHandler">
-                  <img src="../../static_files/free-icon-bookmark-3983871.png" v-if="!this.favourite" class="fav-sign">
-                  <img src="../../static_files/free-icon-bookmark-3983855.png" v-else class="fav-sign">
+                  <img src="../../static_files/free-icon-bookmark-3983855.png" v-if="this.favourite" class="fav-sign">
+                  <img src="../../static_files/free-icon-bookmark-3983871.png" v-else class="fav-sign">
                 </div>
               </div>
             </div>
@@ -97,6 +98,7 @@ export default {
       myProfile: [],
       newComment: '',
 
+      
     }
   },
   mounted() {
@@ -105,12 +107,26 @@ export default {
     this.getMyProfile();
     document.title = 'Loading...';
     this.$toast = useToast()
+
+    const eventId = this.$route.params.id;
+    const userId = localStorage.getItem("currentUserId");
+    const likeUserFromStorage = localStorage.getItem(`LikeUser_${userId}_${eventId}`);
+    if (likeUserFromStorage !== null) {
+      this.LikeUser = JSON.parse(likeUserFromStorage);
+    }
+
+    const FavFromStorage = localStorage.getItem(`favourite_${userId}_${eventId}`);
+    if (FavFromStorage !== null) {
+      this.favourite = JSON.parse(FavFromStorage);
+    }
+
   },
 
 
   methods: {
     async getEvent() {
       const eventId = this.$route.params.id;
+      
       try {
         const response = await axiosInstance.get(`/api/v1/events/${eventId}/`);
         this.event = response.data;
@@ -264,6 +280,7 @@ export default {
 
     async likeHandler() {
       const eventId = this.$route.params.id;
+      const userId = localStorage.getItem("currentUserId");
       const token = localStorage.getItem("accessToken");
       if (!token) {
         console.error("No token found in localStorage.");
@@ -285,17 +302,19 @@ export default {
         if (response.data.includes('поставили лайк')) {
           this.event.likes += 1;
           this.LikeUser = true;
-          localStorage.setItem('LikeUser', JSON.stringify(this.LikeUser));
+          // localStorage.setItem(`LikeUser_${eventId}`, JSON.stringify(this.LikeUser));
 
         } else if (response.data.includes('убрали лайк')) {
           this.event.likes -= 1;
           this.LikeUser = false;
-          localStorage.setItem('LikeUser', JSON.stringify(this.LikeUser));
-        }
-
+          // localStorage.setItem(`LikeUser_${eventId}`, JSON.stringify(this.LikeUser));
+        }    
         else {
           console.error("No data in the response.");
         }
+        
+        localStorage.setItem(`LikeUser_${userId}_${eventId}`, JSON.stringify(this.LikeUser));
+
       } catch (error) {
         console.log("token: ", token);
         console.error("An error occurred: ", error);
@@ -305,6 +324,7 @@ export default {
 
     async FavouriteHandler() {
       const eventId = this.$route.params.id;
+      const userId = localStorage.getItem("currentUserId");
       const token = localStorage.getItem("accessToken");
       if (!token) {
         console.error("No token found in localStorage.");
@@ -327,16 +347,19 @@ export default {
         
         if (response.data.includes('Сохранены')) {
           this.favourite = true;
-          localStorage.setItem('FavouriteUser', JSON.stringify(this.favourite));
+          // localStorage.setItem(`favourite_${eventId}`, JSON.stringify(this.favourite));
 
         } else if (response.data.includes('Удалены')) {
           this.favourite = false;
-          localStorage.setItem('FavouriteUser', JSON.stringify(this.favourite));
+          // localStorage.setItem(`favourite_${eventId}`, JSON.stringify(this.favourite));
         }
-
         else {
           console.error("No data in the response.");
         }
+
+        localStorage.setItem(`favourite_${userId}_${eventId}`, JSON.stringify(this.favourite));
+
+
       } catch (error) {
         console.log("token: ", token);
         console.error("An error occurred: ", error);
@@ -347,17 +370,17 @@ export default {
 
   },
 
-    created() {
-    const likeUser = localStorage.getItem('LikeUser');
-    if (likeUser !== null) {
-      this.LikeUser = JSON.parse(likeUser);
-    }
+  //   created() {
+  //   const likeUser = localStorage.getItem('LikeUser');
+  //   if (likeUser !== null) {
+  //     this.LikeUser = JSON.parse(likeUser);
+  //   }
 
-    const favouriteUser = localStorage.getItem('FavouriteUser');
-    if (favouriteUser !== null) {
-      this.favourite = JSON.parse(favouriteUser);
-    }
-  },
+  //   const favouriteUser = localStorage.getItem('FavouriteUser');
+  //   if (favouriteUser !== null) {
+  //     this.favourite = JSON.parse(favouriteUser);
+  //   }
+  // },
 
 
 }

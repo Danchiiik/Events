@@ -75,7 +75,7 @@ def home(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/api/v1/account/')
+    return redirect('http://localhost:8080')
 
 @login_required
 def generate_jwt_token(request):
