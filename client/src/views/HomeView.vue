@@ -134,7 +134,7 @@ export default {
       searchQuery: '',
       currentPage: 1,
       totalPages: 0,
-      itemsPerPage: 18,
+      itemsPerPage: 6,
       // showRecommendations: true,
 
     }
@@ -243,8 +243,8 @@ export default {
 
     formatName(name) {
       try {
-        if (name.length > 22) {
-          return `${name.substring(0, 22)}...`;
+        if (name.length > 20) {
+          return `${name.substring(0, 20)}...`;
         }
         return name;
       } catch (error) {

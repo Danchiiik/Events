@@ -11,7 +11,7 @@ from applications.feedback.views import FeedbackMixin
 
 
 class PaginationApiView(PageNumberPagination):
-    page_size = 18
+    page_size = 6
     max_page_size = 100
     page_size_query_param = 'events_page'
 
