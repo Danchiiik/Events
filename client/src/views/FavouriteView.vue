@@ -13,7 +13,9 @@
                     v-bind.key = "event.id"
                     @click="redirectToDetail(event.id)" 
                     >
-                    <img v-bind:src="event.image" alt="" class="image-event">
+                    <div class="for-fav-image">
+                        <img v-bind:src="event.image" alt="" class="image-event">
+                    </div>
                     <div class="name-event-div">
                         <span class="name-event">{{formatName(event.name)}}</span>
                     </div>

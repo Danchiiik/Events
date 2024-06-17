@@ -5,7 +5,7 @@
                 <div class="create-event-info">
                     <div class="create-event-name-div">
                         <span>Название: </span>
-                        <input type="text" class="create-event-name" v-model="name">
+                        <input type="text" class="create-event-name" v-model="name" maxlength="150">
                     </div>
                     <div class="create-event-img-div">
                         <span>Изображение-обложка:</span>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="create-event-des-div">
                         <span>Описание:</span>
-                        <input type="text" v-model="des" maxlength="1500" minlength="50" class="create-event-des">
+                        <input type="text" v-model="des" maxlength="2500" minlength="50" class="create-event-des">
                     </div>
 
                     <div class="create-event-region-div">
@@ -61,8 +61,8 @@
                         <span>Тип мероприятия:</span>
                         <select v-model="type">
                             <option value="default">-</option>
-                            <option value="Открытый">Открытый</option>
-                            <option value="Закрытый">Закрытый</option>
+                            <option value="Вход свободный">Вход свободный</option>
+                            <option value="Вход закрытый">Вход закрытый</option>
                         </select>
 
                     </div>

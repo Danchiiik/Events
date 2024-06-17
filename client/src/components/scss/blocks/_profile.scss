@@ -343,14 +343,21 @@
             &:hover {
                 transform: scale(1.05);
             }
-
-            .profile-event-img {
+            .for-profile-image {
                 width: 350px;
                 height: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .profile-event-img {
+                width: 330px;
+                height: 180px;
                 background-size: contain;
                 border-radius: 15px;
                 margin-bottom: 5px;
-                object-fit: contain;
+                object-fit: fill;
                 background-color: #fdeb9e;
 
                 &:hover {

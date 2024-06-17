@@ -19,6 +19,7 @@
 }
 
 .filter-create {
+    margin-top: 60px;
     width: 400px;
     height: 600px;
     background-color: white;
@@ -111,11 +112,13 @@ option {
 }
 
 .search-div {
-    margin-top: 20px;
+    margin-top: 60px;
     width: 1200px;
     height: 50px;
     display: flex;
     align-items: center;
+    position: relative;
+    justify-content: center;
 
     .search-input {
         width: 775px;
@@ -124,6 +127,33 @@ option {
         border-radius: 30px 0px 0px 30px;
         padding: 10px 20px;
     }
+
+    .search-in-div {
+        position: relative;
+
+
+    //     .recommend-bar {
+    //         position: absolute; /* Position the recommendations absolutely */
+    //         top: 40px; /* Adjust this value based on the height of the input to position it below the search bar */
+    //         left: 15px;
+    //         width: 760px;
+    //         background-color: white; /* Ensure it has a background */
+    //         border: 1px solid rgb(129, 129, 129); /* Match the border of the input */
+    //         // border-top: none; /* Remove the top border to make it look connected to the input */
+    //         z-index: 1; /* Ensure it appears above other elements */
+    //         list-style: none;
+    //         padding: 0;
+    //         margin: 0;
+    //         max-height: 200px; /* Optional: limit the height and add scrolling */
+    //         overflow-y: auto;
+    //       }
+
+    //     .every-recommend {
+    //         padding: 10px;
+    //         cursor: pointer;
+    //       }
+    }
+
 
     .search-button {
         width: 100px;
@@ -150,15 +180,23 @@ option {
     align-items: center;
     gap: 10px;
 
-    .prev-button, .current-page, .next-button {
+    .prev-button, .next-button {
         border: 2px $yellow-color solid;
-        padding: 5px 10px;
+        border-radius: 20px;
+        width: 150px;
+        padding: 10px 15px;
         background-color: $yellow-color;
         
         &:hover {
             background-color: white;
         }
     }
+
+    .current-page {
+        border-radius: 20px;
+        padding: 10px 15px;
+    }
+
 
     .current-page.active {
         color: white;
@@ -171,7 +209,7 @@ option {
 
 .event-cards {
     max-width: 1200px;
-    min-height: 1100px;
+    min-height: 800px;
     display: flex;
     column-gap: 75px;
     row-gap: 50px;
@@ -180,7 +218,7 @@ option {
     margin-bottom: 50px;
 
     .box {
-        border-radius: 15px;
+        border-radius: 25px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
         width: 350px;
         height: 500px;
@@ -195,18 +233,27 @@ option {
     }
 }
 
-.image-event {
+.for-image {
     width: 350px;
     height: 200px;
-    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-event {
+    width: 330px;
+    height: 180px;
+    object-fit: fill;
     border-radius: 15px;
     margin-bottom: 5px;
     background-color: #fdeb9e;
+    box-shadow: rgba(0, 0, 0, 0.075) 0px 10px 36px 0px, rgba(0, 0, 0, 0.048) 0px 0px 0px 1px;
 }
 
 .name-event-div {
     max-height: 45px;
-    margin-left: 10px;
+    margin-left: 15px;
     padding-bottom: 15px;
 
     .name-event {
@@ -216,7 +263,7 @@ option {
 
 
 .owner, .type_of_event {
-    margin-left: 10px;
+    margin-left: 15px;
     margin-top: 10px;
     font-size: 15px;
 
@@ -224,14 +271,14 @@ option {
 
 .owner-event, .types-event-event {
     font-size: 20px;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .info-event {
     flex-direction: column;
     display: flex;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 15px;
     font-style: italic;
 
     .region-event, .address-event, .date-event, .time-event, .type-event, .price-event {

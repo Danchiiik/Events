@@ -48,8 +48,8 @@
               <label for="types" class="types">Тип мероприятия:</label> <br>
               <select name="types" id="types" class="types-select" v-model="filters.type" @change="applyFilters">
                 <option value="default">-</option>
-                <option value="Открытый">Открытый</option>
-                <option value="Закрытый">Закрытый</option>
+                <option value="Вход свободный">Вход свободный</option>
+                <option value="Вход закрытый">Вход закрытый</option>
               </select>            
             </div>
           </div>
@@ -60,7 +60,12 @@
       <div class="events-main">
 
         <div class="search-div">
-          <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск..." @keyup.enter="applySearch">
+          <div class="search-in-div">
+            <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск..." @keyup.enter="applySearch">
+            <!-- <ul v-if="showRecommendations && searchQuery" class="recommend-bar">
+              <li v-for="event in filteredEvents" :key="event.id" class="every-recommend" @click="selectRecommendation(event.name)">{{ event.name }}</li>
+            </ul> -->
+          </div>
           <button class="search-button" @click="applySearch"><span>Поиск</span></button>
         </div>
 
@@ -71,7 +76,10 @@
           v-bind.key = "event.id"
           @click="redirectToDetail(event.id)" 
           >
-          <img v-bind:src="event.image" alt="" class="image-event">
+
+          <div class="for-image">
+            <img v-bind:src="event.image" alt="" class="image-event">
+          </div>
           <div class="name-event-div">
             <span class="name-event">{{formatName(event.name)}}</span>
           </div>
@@ -89,7 +97,7 @@
         </div>
 
         <div class="pagination">
-          <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1" class="prev-button">Previous</button>
+          <button @click="changePage(currentPage - 1)" :disabled="currentPage === 1" class="prev-button">Предыдущая</button>
           <button v-if="currentPage > 2" @click="changePage(1)" class="current-page">1</button>
           <span v-if="currentPage > 3">...</span>
           <button v-if="currentPage > 1" @click="changePage(currentPage - 1)" class="current-page">{{ currentPage - 1 }}</button>
@@ -97,7 +105,7 @@
           <button v-if="currentPage < totalPages" @click="changePage(currentPage + 1)" class="current-page">{{ currentPage + 1 }}</button>
           <span v-if="currentPage < totalPages - 2">...</span>
           <button v-if="currentPage < totalPages - 1" @click="changePage(totalPages)" class="current-page">{{ totalPages }}</button>
-          <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages" class="next-button">Next</button>
+          <button @click="changePage(currentPage + 1)" :disabled="currentPage === totalPages" class="next-button">Следующая</button>
         </div>
 
 
@@ -127,6 +135,7 @@ export default {
       currentPage: 1,
       totalPages: 0,
       itemsPerPage: 18,
+      // showRecommendations: true,
 
     }
   },
@@ -134,6 +143,8 @@ export default {
     this.getEvent();
     document.title = "Events.kg";
   },
+
+
   methods: {
     async getEvent(page = 1) {
       try {
@@ -186,6 +197,7 @@ export default {
     },
 
     async applySearch() {
+
       const query = this.searchQuery.toLowerCase();
       this.filteredEvents = this.Events.filter(event => {
         return (
@@ -193,9 +205,15 @@ export default {
           this.getUsername(event.owner).toLowerCase().includes(query)
         );
       });
-      
+
+      // this.showRecommendations = false;
       this.applyFiltersToSearchResults();
     },
+
+    // onInput() {
+    //   this.showRecommendations = true;
+    //   this.applySearch(this.searchQuery);
+    // },
 
     resetFilters() {
       this.filters.region = 'default';
@@ -214,6 +232,13 @@ export default {
       }
       this.applyFilters();
       },
+
+    // selectRecommendation(event) {
+    //   this.searchQuery = event;
+    //   this.applySearch(event);
+
+    //   this.showRecommendations = false
+    // },
 
 
     formatName(name) {

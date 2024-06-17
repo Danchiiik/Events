@@ -8,16 +8,14 @@
                 <div class="like-div">
 
                   <div class="like" @click="likeHandler">
-                    <img src="../../static_files/free-icon-heart-2107845.png" class="like-sign" v-if="this.LikeUser">
-                    <img src="../../static_files/free-icon-heart-shape-silhouette-25451.png" class="like-sign" v-else>
+                    <img src="../../static_files/hearts.png" class="like-sign" v-if="this.LikeUser">
+                    <img src="../../static_files/love.png" class="like-sign" v-else>
                   </div>
-                  
-
+              
                     <div class="like-count">
                       <span>{{ event.likes }}</span>
                     </div>
                 </div>
-
 
                 <div class="favourite" @click="FavouriteHandler">
                   <img src="../../static_files/free-icon-bookmark-3983855.png" v-if="this.favourite" class="fav-sign">
@@ -25,25 +23,82 @@
                 </div>
               </div>
             </div>
-            <div class="infoo-event">
-              <div class="info-event-div">
-                <span class="main-event-name">{{ event.name }}</span>
-                <p class="main-event-owner-p">Организатор:</p><span class="main-event-owner" @click="redicrectToUser(event.owner)"> {{ ownerUsernames[event.owner] }}</span>
-                <p class="main-event-types-p">Вид:</p><span class="main-event-types">{{ event.type_of_event }}</span>
-                <p class="main-event-region-p">Регион:</p><span class="main-event-region">{{ event.region }}</span>
-                <p class="main-event-address-p">Адрес:</p><span class="main-event-address">{{ event.address }}</span>
-                <p class="main-event-date-p">Дата:</p><span class="main-event-date">{{ formatDate(event.date)}}</span>
-                <p class="main-event-time-p">Время:</p><span class="main-event-time">{{ event.time }}</span>
-                <p class="main-event-type-p">Тип:</p><span class="main-event-type">{{ event.type }}</span>
-                <p class="main-event-price-p">Цена:</p><span class="main-event-price">{{formatPrice(event.price) }}</span>
+
+            <div class="main-event-name-div">
+              <span class="main-event-name">{{ event.name }}</span>
+            </div>
+
+            <div class="owner-card-div">
+              <div class="owner-card">
+                <div class="owner-card-avatar">
+                  <img v-bind:src="this.ownerAvatar" class="owner-avatar">
+                </div>
+
+                <div class="some-text">
+                  <span class="main-event-owner"> {{ ownerUsernames[event.owner] }}</span>
+                  <p>организатор</p>
+                </div>
+                
+                <button @click="redicrectToUser(event.owner)" class="to-profile-button">Посмотреть профиль</button>
+              </div>
+
+              <div class="price-card">
+                <div class="price-card-text">
+                  <span>Вход</span>
+                  <span class="price">{{ formatPrice(event.price) }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="event-info-div">
+              <div class="main-info">
+                <div class="main-info-header">
+                  <img src="../../static_files/free-icon-data-analytics-8738041.png" alt="">
+                  <span>Главная информация</span>
+                </div>
+                <div class="main-info-content">
+                  <span>{{ event.type_of_event }}</span>
+                  <span>{{ event.type }}</span>
+                </div>
+              </div>
+              
+              <div class="date-and-time">
+                <div class="date-and-time-header">
+                  <img src="../../static_files/free-icon-time-and-date-26-9188173.png" alt="">
+                  <span>Дата и время</span>
+                </div>
+                <div class="date-and-time-content">
+                  <span>{{ formatDate(event.date) }}</span>
+                  <span>{{ event.time }}</span>
+                </div>
+              </div>
+              
+              <div class="location">
+                <div class="location-header">
+                  <img src="../../static_files/free-icon-location-pin-1201684.png" alt="">
+                  <span>Локация</span>
+                </div>
+                <div class="location-content">
+                  <span>{{ event.region }}</span>
+                  <span>{{ event.address }}</span>
+                </div>
               </div>
 
             </div>
-          </div>
+
             <div class="descr-div">
-              <p class="descr-p">Описание:</p>
-              <span class="descr"> {{ event.description }}</span>
+              <div class="descr-header">
+                <img src="../../static_files/product-description.png" alt="">
+                <span>Описание</span>
+              </div>
+              <div class="descr-content">
+                <span class="descr"> {{ event.description }}</span>
+              </div>
             </div>
+
+          </div>
+
+
           <div class="comments">
             <div class="comments-header-div"><span class="comments-header">Комментарии:</span></div>
 
@@ -69,7 +124,7 @@
                 <div class="someone-comment"><span>{{ comment.comment }}</span></div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -97,6 +152,7 @@ export default {
       currentUserId: localStorage.getItem('currentUserId'),
       myProfile: [],
       newComment: '',
+      ownerAvatar: null,
 
       
     }
@@ -151,10 +207,13 @@ export default {
         try {
           const response = await axiosInstance.get(`/api/v1/account/profile/`);
           const profile = response.data.find(profile => profile.user === ownerId);
+          console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!1', profile)
           if (profile) {
             this.ownerUsernames[ownerId] = profile.username;
+            this.ownerAvatar = profile.avatar;
           } else {
             this.ownerUsernames[ownerId] = 'Unknown';
+            this.ownerAvatar = null;
           }
         } catch (error) {
           console.error("An error occurred: ", error);

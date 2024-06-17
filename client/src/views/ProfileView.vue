@@ -70,8 +70,9 @@
                         v-for="event in Events"
                         v-bind.key="event.id"
                         >
-                    
-                        <img v-bind:src="event.image" class="profile-event-img" @click="redirectToDetail(event.id)">
+                        <div class="for-profile-image">
+                          <img v-bind:src="event.image" class="profile-event-img" @click="redirectToDetail(event.id)">
+                        </div>
                         <div class="profile-event-name">
                             <span>{{ formatName(event.name) }}</span>
                         </div>

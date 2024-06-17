@@ -5,7 +5,7 @@
                 <div class="change-event-info">
                     <div class="change-event-name-div">
                         <span>Название: </span>
-                        <input type="text" class="change-event-name" v-model="editEvent.name">
+                        <input type="text" class="change-event-name" v-model="editEvent.name" maxlength="150">
                     </div>
                     <div class="change-event-img-div">
                         <span>Изображение-обложка:</span>
@@ -13,7 +13,7 @@
                     </div>
                     <div class="change-event-des-div">
                         <span>Описание:</span>
-                        <input type="text" v-model="editEvent.description" maxlength="1500" minlength="50" class="change-event-des">
+                        <input type="text" v-model="editEvent.description" maxlength="2500" minlength="50" class="change-event-des">
                     </div>
 
                     <div class="change-event-region-div">
@@ -61,8 +61,8 @@
                         <span>Тип мероприятия:</span>
                         <select v-model="editEvent.type">
                             <!-- <option value="default">-</option> -->
-                            <option value="Открытый">Открытый</option>
-                            <option value="Закрытый">Закрытый</option>
+                            <option value="Вход свободный">Вход свободный</option>
+                            <option value="Вход закрытый">Вход закрытый</option>
                         </select>
 
                     </div>
@@ -156,7 +156,11 @@ export default {
             formData.append('time', this.editEvent.time);
             formData.append('type_of_event', this.editEvent.type_of_event);
             formData.append('type', this.editEvent.type);
-            formData.append('price', this.editEvent.price);
+            if (this.editEvent.price) {
+                formData.append('price', this.editEvent.price);
+            } else {
+                formData.append('price', 0);
+            }
             
 
             
