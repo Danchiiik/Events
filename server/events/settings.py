@@ -32,7 +32,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
-SITE_ID = 2
+# SITE_ID = 2
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -67,19 +67,19 @@ CORS_ALLOWED_ORIGINS = [
     'http://192.168.4.184:8080'
 ]
 
-SOCIALACCOUNT_PROVIDER = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email'
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-            'prompt': 'select_account',
-            'approval_prompt': 'force',
-            }
-    }
-}
+# SOCIALACCOUNT_PROVIDER = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email'
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#             'prompt': 'select_account',
+#             'approval_prompt': 'force',
+#             }
+#     }
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -241,8 +241,8 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-SOCIALACCOUNT_ADAPTER = 'applications.accounts.adapters.CustomSocialAccountAdapter'
-SOCIALACCOUNT_LOGIN_ON_GET=True
-ACCOUNT_LOGOUT_ON_GET=True
-ACCOUNT_SESSION_REMEMBER=False
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+# SOCIALACCOUNT_ADAPTER = 'applications.accounts.adapters.CustomSocialAccountAdapter'
+# SOCIALACCOUNT_LOGIN_ON_GET=True
+# ACCOUNT_LOGOUT_ON_GET=True
+# ACCOUNT_SESSION_REMEMBER=False
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -16,7 +16,7 @@ class PaginationApiView(PageNumberPagination):
     page_size_query_param = 'events_page'
 
 
-class EventsViewSet(ModelViewSet, FeedbackMixin):
+class EventsViewSet(ModelViewSet):
     queryset = Events.objects.all()
     serializer_class = EventsSerializer
     permission_classes = [IsEventOwner_or_ReadOnly]
@@ -26,14 +26,13 @@ class EventsViewSet(ModelViewSet, FeedbackMixin):
     filterset_fields = ['region', 'type', 'type_of_event']
     search_fields = ['name', 'owner']
     ordering_fields = ['date']
-    
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-        
+
     def get_permissions(self):
         if self.action == 'delete_comment':
             return [IsFeedbackOwner()]
-        return super().get_permissions()
-        
+        return super().get_permissions()        
         
         

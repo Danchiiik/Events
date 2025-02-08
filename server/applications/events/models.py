@@ -34,7 +34,7 @@ TYPE = (
 
 class Events(models.Model):
     name = models.CharField(max_length=150)
-    image = models.FileField(upload_to='images/')
+    image = models.FileField(upload_to='images/')  # Main thumbnail image
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='events')
     description = models.TextField(null=True, blank=True, max_length=2500)
     region = models.CharField(max_length=50, choices=REGION)
@@ -44,19 +44,19 @@ class Events(models.Model):
     type_of_event = models.CharField(max_length=50, choices=TYPE_OF_EVENT)
     type = models.CharField(max_length=50, choices=TYPE)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    
+    video = models.FileField(upload_to='videos/', null=True, blank=True)  # New field for video
+
     def __str__(self) -> str:
         return self.name
-    
+
     class Meta:
         verbose_name = 'Мероприятие'
         verbose_name_plural = 'Мероприятия'
-        
-        
+
+
 class Image(models.Model):
     event = models.ForeignKey(Events, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='images/')
-    
+
     def __str__(self) -> str:
         return str(self.image.url)
-        
