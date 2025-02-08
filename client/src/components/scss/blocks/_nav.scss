@@ -4,31 +4,32 @@
     padding: 10px 0;
 
     .nav-menu {
+        height: 65px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 }
 
-.home-link-div {
+.home-link-div {   
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 430px;
+    width: 400px;
 }
 
 .home-link {
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 600;
 }
 
 
 .create {
-    font-size: 20px;
+    font-size: 15px;
     color: white;
-    padding: 10px 20px;
-    border-radius: 35px;
-    border: 2px $black-color solid;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px $black-color solid;
     background-color: $black-color;
     transition: .3s;
 
@@ -43,14 +44,14 @@
 .nav__list {
     display: flex;
     gap: 20px;
-    font-size: 20px;
+    font-size: 15px;
 
     .nav__list-item {
         display: flex;
         align-items: center;
-        padding: 10px 20px;
-        border-radius: 35px;
-        border: 2px $yellow-color solid;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px $yellow-color solid;
         background-color: $yellow-color;
         transition: .3s;
 
@@ -64,9 +65,9 @@
     }
 
     .nav__list-item-auth {
-        padding: 10px 20px;
-        border-radius: 35px;
-        border: 2px black solid;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: 1px black solid;
         background-color: black;
         transition: .3s;
 

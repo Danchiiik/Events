@@ -9,19 +9,27 @@
                 <form @submit.prevent="submitForm" class="main-form">
                     <div class="form">
                         <ul class="register-fields">
-                            <span>Электронная почта</span>
-                            <li class="li-button"><input type="text" v-model="email"></li>
-                            <span>Пароль</span>
-                            <li class="li-button"><input type="password" v-model="password"></li>
-                            <span>Подтвердите пароль</span>
-                            <li class="li-button"><input type="password" v-model="password2"></li >
+                            <!-- <span>Электронная почта</span> -->
+                            <li class="li-button"><input type="text" v-model="email" placeholder="Email"></li>
+                            <!-- <span>Пароль</span> -->
+                            <li class="li-button"><input type="password" v-model="password" placeholder="Password"></li>
+                            <!-- <span>Подтвердите пароль</span> -->
+                            <li class="li-button"><input type="password" v-model="password2" placeholder="Confirm password"></li >
                         </ul>
                         <div class="register-buttons">
                             <button type="submit" class="signup-button">Sign up</button>
+                        </div>
+                        
+                        <div class="access-quickly">
+                            <span>ACCESS QUICKLY</span>
+                        </div>
+                        
+                        <div class="google-div">
                             <router-link to="/google">
                                 <button class="google-button">Google</button>
                             </router-link>
                         </div>
+
                     </div>    
                     
                     <div class="logining-div">

@@ -3,13 +3,13 @@
         <div class="container">
             <div class="main-form">
                 <div class="forgot-password-header">
-                    <h1>Восстановление пароля</h1>
+                    <h1>Password reset</h1>
                 </div>
 
                 <form class="forgot-password-form" @submit.prevent="forgotPassword" v-if="first">
                     <div class="first-form">
-                        <span>Напишите почту</span>
-                        <input type="email" v-model="email">
+                        <!-- <span>Напишите почту</span> -->
+                        <input type="email" v-model="email" placeholder="Email">
                     </div>
 
                     <div class="first-form-button">

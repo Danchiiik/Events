@@ -79,44 +79,16 @@ const routes = [
     component: GoogleView,
   },
 
-  // {
-  //   path: '/google-callback',
-  //   name: 'GoogleCallback',
-  //   component: {
-  //     created() {
-  //       const urlParams = new URLSearchParams(window.location.search);
-  //       const accessToken = urlParams.get('access');
-  //       const refreshToken = urlParams.get('refresh');
-  
-  //       if (accessToken && refreshToken) {
-  //         localStorage.setItem('accessToken', accessToken);
-  //         localStorage.setItem('refreshToken', refreshToken);
-  
-  //         // Redirect to the main page
-  //         this.$router.push('/').then(() => {
-  //           window.location.reload();
-  //         })
-  //       } else {
-  //         console.error('Error: Tokens not found in URL parameters');
-  //         this.$router.push('/login');
-  //       }
-  //     },
-  //     template: '<div>Processing login...</div>'
-  //   }
-  // }
-  
-
-
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-  scrollBehavior(savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition; // Restores position when using browser back/forward
     } else {
-      return { top: 0 };
+      return { top: 0 }; // Always scrolls to top on new pages
     }
   },
 });

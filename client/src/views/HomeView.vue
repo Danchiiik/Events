@@ -1,72 +1,91 @@
 <template>
   <section class="home">
     <div class="container">
-      <div class="filter-main">
-
-        <div class="filter-create">
-          <div class="filters">
-
-            <div class="buttons">
-              <router-link to="/">
-                <button class="all" @click="resetFilters"><p class="reset">Сбросить</p></button>
-              </router-link>
-              <button class="date-ordering" @click="toggleDateOrdering"><p class="date">По дате</p></button>
-            </div>
-
-            <div class ="three-filters">  
-              <div class="region-filter">
-                <label for="regions" class="regions">Регион:</label> <br>
-                <select name="region" id="region" class="regions-select" v-model="filters.region" @change="applyFilters">
-                  <option value="default">-</option>
-                  <option value="Бишкек">Бишкек</option>
-                  <option value="Чуй">Чуй</option>
-                  <option value="Талас">Талас</option>
-                  <option value="Иссык-Куль">Иссык-Куль</option>
-                  <option value="Жалал-Абад">Жалал-Абад</option>
-                  <option value="Нарын">Нарын</option>
-                  <option value="Ош">Ош</option>
-                  <option value="Баткен">Баткен</option>
-              </select> <br>
-            </div>
-            
-            <div class="types_event-filter">
-              <label for="types_of_events" class="types-of-events">Вид мероприятия:</label> <br>
-              <select name="types_of_event" id="types_of_event" class="types_event-select" v-model="filters.typeOfEvent" @change="applyFilters">
-                <option value="default">-</option>
-                <option value="Открытие">Открытие</option>
-                <option value="Выставка">Выставка</option>
-                <option value="Ярмарка">Ярмарка</option>
-                <option value="Презентация">Презентация</option>
-                <option value="Праздник">Праздник</option>
-                <option value="Пресс-мероприятие">Пресс-мероприятие</option>
-                <option value="Тренинг/семинар">Тренинг/семинар</option>
-                <option value="Фестиваль/концерт  ">Фестиваль/концерт</option>
-              </select> <br>
-            </div>
-
-            <div class="type-filter">
-              <label for="types" class="types">Тип мероприятия:</label> <br>
-              <select name="types" id="types" class="types-select" v-model="filters.type" @change="applyFilters">
-                <option value="default">-</option>
-                <option value="Вход свободный">Вход свободный</option>
-                <option value="Вход закрытый">Вход закрытый</option>
-              </select>            
-            </div>
-          </div>
+      
+      
+      
+      <div class="info-window">
+        <div class="info">
+          <p class="info-main">Events.kg</p>
+          <p class="info-text">Поиск мероприятий в Кыргызстане</p>
         </div>
       </div>
-    </div>
+      
+      
+      
       
       <div class="events-main">
+        
+        
+        <div class="search-main-div">
+          <div class="search-div">
 
-        <div class="search-div">
-          <div class="search-in-div">
-            <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск..." @keyup.enter="applySearch">
-            <!-- <ul v-if="showRecommendations && searchQuery" class="recommend-bar">
-              <li v-for="event in filteredEvents" :key="event.id" class="every-recommend" @click="selectRecommendation(event.name)">{{ event.name }}</li>
-            </ul> -->
+            <div class="search-in-div">
+              <input type="text" class="search-input" v-model="searchQuery" placeholder="Поиск..." @keyup.enter="applySearch"> 
+            </div>
+
+            <button class="search-button" @click="applySearch"><span>Поиск</span></button>      
           </div>
-          <button class="search-button" @click="applySearch"><span>Поиск</span></button>
+          
+          <div class="filter-main">
+    
+            <div class="filter-create">
+
+              <div class="filters">
+                
+                <div class ="three-filters">  
+                  <div class="region-filter">
+                    <label for="regions" class="regions">Регион:</label> <br>
+                    <select name="region" id="region" class="regions-select" v-model="filters.region" @change="applyFilters">
+                      <option value="default">-</option>
+                      <option value="Бишкек">Бишкек</option>
+                      <option value="Чуй">Чуй</option>
+                      <option value="Талас">Талас</option>
+                      <option value="Иссык-Куль">Иссык-Куль</option>
+                      <option value="Жалал-Абад">Жалал-Абад</option>
+                      <option value="Нарын">Нарын</option>
+                      <option value="Ош">Ош</option>
+                      <option value="Баткен">Баткен</option>
+                  </select>
+                </div>
+                
+                <div class="types_event-filter">
+                  <label for="types_of_events" class="types-of-events">Вид мероприятия:</label> <br>
+                  <select name="types_of_event" id="types_of_event" class="types_event-select" v-model="filters.typeOfEvent" @change="applyFilters">
+                    <option value="default">-</option>
+                    <option value="Открытие">Открытие</option>
+                    <option value="Выставка">Выставка</option>
+                    <option value="Ярмарка">Ярмарка</option>
+                    <option value="Презентация">Презентация</option>
+                    <option value="Праздник">Праздник</option>
+                    <option value="Пресс-мероприятие">Пресс-мероприятие</option>
+                    <option value="Тренинг/семинар">Тренинг/семинар</option>
+                    <option value="Фестиваль/концерт  ">Фестиваль/концерт</option>
+                  </select>
+                </div>
+    
+                <div class="type-filter">
+                  <label for="types" class="types">Тип мероприятия:</label> <br>
+                  <select name="types" id="types" class="types-select" v-model="filters.type" @change="applyFilters">
+                    <option value="default">-</option>
+                    <option value="Вход свободный">Вход свободный</option>
+                    <option value="Вход закрытый">Вход закрытый</option>
+                  </select>            
+                </div>
+              </div>
+
+              <div class="buttons">
+                  <router-link to="/">
+                    <button class="all" @click="resetFilters"><p class="reset">Сбросить</p></button>
+                  </router-link>
+                  <button class="date-ordering" @click="toggleDateOrdering"><p class="date">По дате</p></button>
+              </div>
+    
+
+            </div>
+          </div>
+          </div>
+          
         </div>
 
 
@@ -81,17 +100,17 @@
             <img v-bind:src="event.image" alt="" class="image-event">
           </div>
           <div class="name-event-div">
+            <span class="types-event-event">{{ event.type_of_event }}</span>
             <span class="name-event">{{formatName(event.name)}}</span>
           </div>
-          <p class="owner">Организатор:</p><span class="owner-event"> {{ getUsername(event.owner) }}</span>
-          <p class="type_of_event">Вид:</p><span class="types-event-event">{{ event.type_of_event }}</span>
           <div class="info-event">
-            <span class="region-event">{{ event.region }}</span>
+            <!-- <span class="region-event">{{ event.region }}</span>
             <span class="address-event">{{ event.address }}</span>
             <span class="date-event">{{ formatDate(event.date) }}</span>
             <span class="time-event">{{ event.time }}</span>
             <span class="type-event">{{ event.type }}</span>
-            <span class="price-event">{{ formatPrice(event.price) }}</span>
+            <span class="price-event">{{ formatPrice(event.price) }}</span> -->
+            <span class="owner-event"> {{  getUsername(event.owner) }}</span>
           </div>
           </div>
         </div>
@@ -117,6 +136,7 @@
 <script>
 import axios from 'axios';
 import axiosInstance from '@/axiosSetup';
+import { nextTick } from 'vue';
 
 export default {
   name: 'HomeView',
@@ -206,14 +226,9 @@ export default {
         );
       });
 
-      // this.showRecommendations = false;
       this.applyFiltersToSearchResults();
     },
 
-    // onInput() {
-    //   this.showRecommendations = true;
-    //   this.applySearch(this.searchQuery);
-    // },
 
     resetFilters() {
       this.filters.region = 'default';
@@ -233,23 +248,22 @@ export default {
       this.applyFilters();
       },
 
-    // selectRecommendation(event) {
-    //   this.searchQuery = event;
-    //   this.applySearch(event);
-
-    //   this.showRecommendations = false
-    // },
-
 
     formatName(name) {
       try {
-        if (name.length > 20) {
-          return `${name.substring(0, 20)}...`;
+        if (name.length > 30) {
+          let words = name.split(" ");
+          let result = "";
+          for (let word of words) {
+            if ((result + word).length > 30) break;
+            result += word + " ";
+          }
+          return `${result.trim()}...`;
         }
         return name;
       } catch (error) {
         console.error("An error occurred: ", error);
-        return name; 
+        return name;
       }
     },
 
@@ -270,7 +284,7 @@ export default {
     },
 
     getUsername(eventOwner) {
-      return this.usernames[eventOwner] || 'Loading...';
+      return "by " + this.usernames[eventOwner] || 'Loading...';
     },
 
     formatDate(dateString) {
@@ -293,13 +307,16 @@ export default {
         console.error("An error occurred: ", error); 
       }
     },
+
     redirectToDetail(eventId) {
-      try {
-        this.$router.push(`/events/${eventId}`);
-      } catch {
-        console.error("An error occurred: ", error); 
-      }
-    }
+      this.$router.push(`/events/${eventId}`).then(() => {
+        nextTick(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }).catch(error => {
+        console.error("An error occurred: ", error);
+      });
+    },
   }
 }
 </script>

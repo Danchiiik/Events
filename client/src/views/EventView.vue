@@ -3,7 +3,18 @@
         <div class="container">
           <div class="content">
             <div class="img-event">
-              <img v-bind:src="event.image" class="main-img">
+
+              <button class="switch-btn left" @click="toggleMedia"></button>
+
+              <template v-if="showVideo && event.video">
+                <video v-bind:src="event.video" class="main-video" controls autoplay loop></video>
+              </template>
+              <template v-else>
+                <img v-bind:src="event.image" class="main-img">
+              </template>
+
+              <button class="switch-btn right" @click="toggleMedia"></button>
+              
               <div class="like-fav">
                 <div class="like-div">
 
@@ -140,6 +151,7 @@ export default {
   name: 'EventView',
   data() {
     return {
+      showVideo: true,
       LikeUser: false,
       favourite: false,
       event: {
@@ -223,6 +235,13 @@ export default {
       return this.ownerUsernames[ownerId] || 'Loading...';
     },
 
+    toggleMedia() {
+      if (this.event.video) {
+        this.showVideo = !this.showVideo; // Toggle between video and image
+      }
+    },
+
+
     async getComment() {
       const eventId = this.$route.params.id;
       try {
@@ -258,7 +277,6 @@ export default {
           comment: this.newComment
         }, {
           headers: {
-            // "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
           }
         });

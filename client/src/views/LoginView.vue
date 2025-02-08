@@ -9,18 +9,26 @@
                 <form @submit.prevent="submitForm" class="main-form">
                     <div class="form">
                         <ul class="login-fields">
-                            <span>Электронная почта</span>
-                            <li class="li-button"><input type="text" v-model="email"></li>
-                            <span>Пароль</span>
-                            <li class="li-button"><input type="password" v-model="password"></li>
+                            <!-- <span>Электронная почта</span> -->
+                            <li class="li-button"><input type="text" v-model="email" placeholder="Email"></li>
+                            <!-- <span>Пароль</span> -->
+                            <li class="li-button"><input type="password" v-model="password" placeholder="Password"></li>
                         </ul>
                         
                         <div class="login-buttons">
                             <button type="submit" class="login-button">Login</button>
+                        </div>
+                        
+                        <div class="access-quickly">
+                            <span>ACCESS QUICKLY</span>
+                        </div>
+                        
+                        <div class="google-div">
                             <router-link to="/google">
                                 <button type="submit" class="google-button">Google</button>
                             </router-link>
                         </div>
+
                     </div>
 
                     <div class="add-form">
@@ -32,8 +40,8 @@
                         </div>
                             
                         <router-link to="/forgot_password">
-                        <div class="forgot-password-div">
-                                <span class="forgot-password">Забыли пароль?</span>
+                            <div class="forgot-password-div">
+                                <button class="forgot-password">Забыли пароль?</button>
                             </div>
                         </router-link>
                     </div>
